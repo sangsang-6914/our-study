@@ -1,11 +1,10 @@
-import { DefaultTheme } from "@material-ui/styles";
-import { createGlobalStyle } from "styled-components";
+import { DefaultTheme } from '@material-ui/styles';
+import { createGlobalStyle } from 'styled-components';
 
-
-export const theme:DefaultTheme = {
-    bgColor: 'white',
-    textColor: 'black'
-}
+export const theme: DefaultTheme = {
+  bgColor: 'white',
+  textColor: 'black',
+};
 
 export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
@@ -63,11 +62,11 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     font-family: 'Source Sans Pro', sans-serif;
     line-height: 1.2;
-    background-color: ${props => props.theme.bgColor};
-    color: ${props => props.theme.textColor}
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor}
   }
   a {
     text-decoration:none;
     color: inherit;
   }
-`
+`;

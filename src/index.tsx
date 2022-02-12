@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {ReactQueryDevtools} from 'react-query/devtools'
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from './theme';
 
 const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   </React.StrictMode>,

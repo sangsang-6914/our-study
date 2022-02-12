@@ -40,28 +40,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "airbnb",
-      "prettier"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "rules": {
-      "react/jsx-filename-extension": 0,
-      "import/no-named-as-default": 0,
-      "import/no-named-as-default-member": 0,
-      "import/no-unresolved": 0,
-      "import/prefer-default-export": 0,
-      "no-underscore-dangle": 0,
-      "no-console": 0,
-      "react/forbid-prop-types": 0
-    },
-    "env": {
-      "browser": true
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",

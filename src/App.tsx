@@ -1,9 +1,7 @@
+import CounterContainer from './containers/CounterContainer';
+
 function App() {
-  return (
-    <div>
-      <h1>Study Front Project</h1>
-    </div>
-  );
+  return <CounterContainer />;
 }
 
 export default App;

@@ -1,9 +1,13 @@
-import { DefaultTheme } from '@material-ui/styles';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
-  bgColor: 'white',
-  textColor: 'black',
+  mint: {
+    basic: '#2AC1BC',
+    darker: '#2ABCB4',
+    deepDarker: '#20B2AA',
+    lighter: '#34C6BE',
+    deepLighter: '#3ED0C8',
+  },
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -62,8 +66,8 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     font-family: 'Source Sans Pro', sans-serif;
     line-height: 1.2;
-    background-color: ${(props) => props.theme.bgColor};
-    color: ${(props) => props.theme.textColor}
+    background-color: white;
+    color: black;
   }
   a {
     text-decoration:none;

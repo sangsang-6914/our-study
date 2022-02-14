@@ -7,7 +7,7 @@ import {
   SubTitle,
   Title,
   Wrapper,
-} from '../style/join';
+} from './join.style';
 
 function Join() {
   const { t } = useTranslation();

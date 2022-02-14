@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import {
   InputForm,
   JoinBtn,
@@ -9,44 +10,51 @@ import {
 } from '../style/join';
 
 function Join() {
+  const { t } = useTranslation();
   const { register, handleSubmit, setValue } = useForm();
   return (
     <>
       <Wrapper>
         <JoinWrapper>
-          <Title>회원가입</Title>
-          <SubTitle>이름</SubTitle>
-          <InputForm {...register('name')} placeholder="이름을 입력하세요." />
-          <SubTitle>이메일</SubTitle>
+          <Title>{t('join.title')}</Title>
+          <SubTitle>{t('join.subtitle.name')}</SubTitle>
+          <InputForm
+            {...register('name')}
+            placeholder={t('join.placeholder.name')}
+          />
+          <SubTitle>{t('join.subtitle.email')}</SubTitle>
           <InputForm
             {...register('email')}
-            placeholder="이메일을 입력하세요."
+            placeholder={t('join.placeholder.email')}
           />
-          <SubTitle>비밀번호</SubTitle>
+          <SubTitle>{t('join.subtitle.password')}</SubTitle>
           <InputForm
             {...register('password')}
             type="password"
             placeholder="******"
           />
-          <SubTitle>비밀번호 확인</SubTitle>
+          <SubTitle>{t('join.subtitle.checkPassword')}</SubTitle>
           <InputForm
             {...register('passwordCheck')}
             type="password"
             placeholder="******"
           />
-          <SubTitle>성별</SubTitle>
-          <InputForm {...register('gender')} placeholder="성별을 선택하세요." />
-          <SubTitle>연락처</SubTitle>
+          <SubTitle>{t('join.subtitle.gender')}</SubTitle>
+          <InputForm
+            {...register('gender')}
+            placeholder={t('join.placeholder.gender')}
+          />
+          <SubTitle>{t('join.subtitle.phone')}</SubTitle>
           <InputForm
             {...register('handphone')}
-            placeholder="연락처를 입력하세요."
+            placeholder={t('join.placeholder.phone')}
           />
-          <SubTitle>주소</SubTitle>
+          <SubTitle>{t('join.subtitle.address')}</SubTitle>
           <InputForm
             {...register('address')}
-            placeholder="주소를 입력하세요."
+            placeholder={t('join.placeholder.address')}
           />
-          <JoinBtn>가입하기</JoinBtn>
+          <JoinBtn>{t('join.button.signup')}</JoinBtn>
         </JoinWrapper>
       </Wrapper>
     </>

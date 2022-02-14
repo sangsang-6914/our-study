@@ -28,6 +28,8 @@ const Logo = styled.div`
 `;
 
 const Items = styled.ul`
+  font-size: 15px;
+  font-weight: 400;
   display: flex;
   align-items: center;
 `;

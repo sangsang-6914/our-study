@@ -1,0 +1,36 @@
+{
+  "hello": "hello",
+  "header": {
+    "item": {
+      "study": "Study",
+      "mento": "Mento",
+      "developer": "Developer Info"
+    },
+    "button": {
+      "login": "Login",
+      "signup": "Sign up"
+    }
+  },
+  "join": {
+    "title": "Sign up",
+    "subtitle": {
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "checkPassword": "Password Confirm",
+      "gender": "Gender",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "button": {
+      "signup": "Join"
+    },
+    "placeholder": {
+      "name": "Please enter your name..",
+      "email": "example@ourstudy.com",
+      "gender": "Please enter your gender..",
+      "phone": "000-0000-0000",
+      "address": "Please enter your address.."
+    }
+  }
+}

@@ -8,6 +8,7 @@ import { GlobalStyle, theme } from './theme';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './modules';
+import './locales/i18n';
 
 const store = createStore(rootReducer);
 

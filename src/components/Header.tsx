@@ -1,5 +1,4 @@
-import { useAnimation, useViewportScroll } from 'framer-motion';
-import { useEffect } from 'react';
+import { AnimationControls } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Col,
@@ -10,19 +9,15 @@ import {
   Nav,
   navVariants,
 } from '../style/header';
+import { useTranslation } from 'react-i18next';
+interface IHeaderProps {
+  navAnimation: AnimationControls;
+  handleChangeLanguage: () => void;
+}
 
-function Header() {
-  const { scrollY } = useViewportScroll();
-  const navAnimation = useAnimation();
-  useEffect(() => {
-    scrollY.onChange(() => {
-      if (scrollY.get() > 1) {
-        navAnimation.start('scroll');
-      } else {
-        navAnimation.start('top');
-      }
-    });
-  }, [navAnimation, scrollY]);
+function Header({ navAnimation, handleChangeLanguage }: IHeaderProps) {
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <Nav variants={navVariants} initial="top" animate={navAnimation}>
@@ -32,16 +27,21 @@ function Header() {
           </Logo>
           <Items>
             <Item>
-              <Link to="/developer">개발자 소개</Link>
+              <Link to="/developer">{t('header.item.developer')}</Link>
             </Item>
-            <Item>스터디</Item>
-            <Item>멘토</Item>
+            <Item>{t('header.item.study')}</Item>
+            <Item>{t('header.item.mento')}</Item>
           </Items>
         </Col>
         <Col>
-          <HeaderBtn bgColor="darkMint">로그인</HeaderBtn>
+          <HeaderBtn onClick={handleChangeLanguage} bgColor="lightMint">
+            {i18n.language.includes('ko') ? 'en' : 'ko'}
+          </HeaderBtn>
+          <HeaderBtn bgColor="darkMint">{t('header.button.login')}</HeaderBtn>
           <Link to="/join">
-            <HeaderBtn bgColor="lightMint">회원가입</HeaderBtn>
+            <HeaderBtn bgColor="lightMint">
+              {t('header.button.signup')}
+            </HeaderBtn>
           </Link>
         </Col>
       </Nav>

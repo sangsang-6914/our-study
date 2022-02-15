@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 const Nav = styled(motion.div)`
   width: 100vw;
-  height: 8vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   top: 0;
-  padding: 0px 300px;
+  padding: 20px 300px;
   position: fixed;
   font-size: 18px;
   z-index: 1;

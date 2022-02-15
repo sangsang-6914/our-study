@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import tranEn from './en/message_en.json';
-import tranKo from './ko/message_ko.json';
+import tranEn from './message_en.json';
+import tranKo from './message_ko.json';
 
 export const languages = ['en', 'ko'] as const;
 export type Languages = typeof languages[number];

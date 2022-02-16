@@ -59,7 +59,8 @@
     ]
   },
   "devDependencies": {
-    "prettier-eslint": "^13.0.0"
+    "prettier-eslint": "^13.0.0",
+    "react-test-renderer": "^17.0.2"
   },
   "homepage": "https://sangsang-6914.github.io/our-study"
 }

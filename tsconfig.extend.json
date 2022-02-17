@@ -6,7 +6,7 @@
       "@routes/*": ["./routes/*"],
       "@components/*": ["./components/*"],
       "@modules/*": ["./modules/*"],
-      // "@/*": ["./src/*"],
+      "@testing/*": ["./test/*"],
       "assets": ["./assets/*"]
     }
   }

@@ -1,9 +1,9 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import Home from './routes/home/Home';
-import Join from './routes/join/Join';
-import DeveloperInfo from './routes/developer/DeveloperInfo';
-import Header from './components/header/Header';
+import Home from '@routes/home/Home';
+import Join from '@routes/join/Join';
+import DeveloperInfo from '@routes/developer/DeveloperInfo';
+import Header from '@components/header/Header';
 
 function App() {
   return (

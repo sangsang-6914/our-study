@@ -1,20 +1,10 @@
-import { Link } from 'react-router-dom';
-import {
-  Col,
-  Item,
-  Items,
-  HeaderBtn,
-  Logo,
-  Nav,
-  navVariants,
-} from './header.style';
 import { useTranslation } from 'react-i18next';
 import { useAnimation, useViewportScroll } from 'framer-motion';
 import { useEffect } from 'react';
+import HeaderView from './HeaderView';
 
 function Header() {
-  const { t, i18n } = useTranslation();
-
+  const { i18n } = useTranslation();
   const { scrollY } = useViewportScroll();
   const navAnimation = useAnimation();
 
@@ -39,33 +29,14 @@ function Header() {
     i18n.changeLanguage(changeLang);
   };
 
+  const props = {
+    handleChangeLanguage,
+    navAni: navAnimation,
+  };
+
   return (
     <>
-      <Nav variants={navVariants} initial="top" animate={navAnimation}>
-        <Col>
-          <Logo>
-            <Link to="/">Our Study</Link>
-          </Logo>
-          <Items>
-            <Item>
-              <Link to="/developer">{t('header.item.developer')}</Link>
-            </Item>
-            <Item>{t('header.item.study')}</Item>
-            <Item>{t('header.item.mento')}</Item>
-          </Items>
-        </Col>
-        <Col>
-          <HeaderBtn onClick={handleChangeLanguage} bgColor="lightMint">
-            {i18n.language.includes('ko') ? 'en' : 'ko'}
-          </HeaderBtn>
-          <HeaderBtn bgColor="darkMint">{t('header.button.login')}</HeaderBtn>
-          <Link to="/join">
-            <HeaderBtn bgColor="lightMint">
-              {t('header.button.signup')}
-            </HeaderBtn>
-          </Link>
-        </Col>
-      </Nav>
+      <HeaderView {...props} />
     </>
   );
 }

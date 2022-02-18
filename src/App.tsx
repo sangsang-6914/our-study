@@ -4,12 +4,14 @@ import Home from '@pages/home/Home';
 import Join from '@pages/join/Join';
 import DeveloperInfo from '@pages/developer/DeveloperInfo';
 import Header from '@components/header/Header';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
-        <title>우리의 스터디</title>
+        <title>{t('title')}</title>
       </Helmet>
       <Router>
         <Header />

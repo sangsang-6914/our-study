@@ -23,14 +23,24 @@
       "address": "주소"
     },
     "button": {
-      "signup": "가입하기"
+      "signup": "가입하기",
+      "man": "남성",
+      "woman": "여성"
     },
     "placeholder": {
       "name": "이름을 입력하세요.",
       "email": "example@ourstudy.com",
       "gender": "성별을 선택하세요.",
-      "phone": "000-0000-0000",
-      "address": "주소를 입력하세요"
+      "mobile": "'-' 없이 입력해주세요.",
+      "address": "주소를 입력하세요",
+      "addressDetail": "상세주소를 입력력하세요.",
+      "postNum": "우편번호를 입력하세요."
+    },
+    "validate": {
+      "required": "필수 입력 조건입니다.",
+      "email": "올바른 이메일 형식이 아닙니다.",
+      "passwordCheck": "비밀번호가 일치하지 않습니다.",
+      "mobile": "올바른 핸드폰 형식이 아닙니다."
     }
   }
 }

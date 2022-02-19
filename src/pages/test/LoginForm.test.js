@@ -9,7 +9,7 @@ describe('LoginForm', () => {
     );
 
     const button = getByText('로그인');
-    const email = getByLabelText('이메일');
+    const email = getByLabelText('title');
     const password = getByLabelText('비밀번호');
 
     expect(button).toBeDisabled();

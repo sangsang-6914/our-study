@@ -9,7 +9,7 @@ import {
   Logo,
   Nav,
   navVariants,
-} from './header.style';
+} from '@styles/header.style';
 
 interface IHeaderViewProps {
   handleChangeLanguage: () => void;

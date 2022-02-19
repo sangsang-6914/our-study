@@ -1,10 +1,13 @@
-import { render, fireEvent } from '@testing-library/react';
-import HeaderView from './HeaderView';
+import { render, screen } from '@testing-library/react';
+import 'jest-styled-components';
+import Header from './Header';
 
 describe('Header', () => {
   it('header corretly', () => {
-    const { getByText } = render(<HeaderView />);
-    const link = getByText('Our Study');
+    const { container } = render(<Header />);
+    const link = screen.getByText('Our Study');
     expect(link).toBeInTheDocument();
+
+    expect(container).toMatchSnapshot();
   });
 });

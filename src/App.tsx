@@ -5,6 +5,14 @@ import Join from '@pages/join/Join';
 import DeveloperInfo from '@pages/developer/DeveloperInfo';
 import Header from '@components/header/Header';
 import { useTranslation } from 'react-i18next';
+import Footer from '@components/footer/Footer';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 function App() {
   const { t } = useTranslation();
@@ -14,12 +22,15 @@ function App() {
         <title>{t('title')}</title>
       </Helmet>
       <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/developer" element={<DeveloperInfo />} />
-          <Route path="/join" element={<Join />} />
-        </Routes>
+        <Wrapper>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/developer" element={<DeveloperInfo />} />
+            <Route path="/join" element={<Join />} />
+          </Routes>
+          <Footer />
+        </Wrapper>
       </Router>
     </>
   );

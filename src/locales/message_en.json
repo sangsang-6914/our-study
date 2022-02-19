@@ -24,14 +24,24 @@
       "address": "Address"
     },
     "button": {
-      "signup": "Join"
+      "signup": "Join",
+      "man": "MAN",
+      "woman": "WOMAN"
     },
     "placeholder": {
       "name": "Please enter your name..",
       "email": "example@ourstudy.com",
       "gender": "Please enter your gender..",
-      "phone": "000-0000-0000",
-      "address": "Please enter your address.."
+      "mobile": "Please enter without '-'.",
+      "address": "Please enter your address..",
+      "addressDetail": "Please enter your detail address..",
+      "postNum": "Please enter your postnum.."
+    },
+    "validate": {
+      "required": "This is a required entry condition.",
+      "email": "This is not a valid email format.",
+      "passwordCheck": "Passwords do not match.",
+      "mobile": "It is not a valid cell phone format."
     }
   }
 }

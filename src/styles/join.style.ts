@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  min-height: 1300px;
-  padding: 100px 300px;
-`;
-
 const JoinWrapper = styled.div`
   max-width: 380px;
   margin: 0 auto;
@@ -23,6 +18,8 @@ const SubTitle = styled.div`
   margin-top: 25px;
   margin-bottom: 5px;
 `;
+
+const JoinForm = styled.form``;
 
 const InputForm = styled.input`
   width: 100%;
@@ -51,4 +48,35 @@ const JoinBtn = styled.button`
   }
 `;
 
-export { Wrapper, JoinBtn, JoinWrapper, SubTitle, Title, InputForm };
+const GenderForm = styled.div`
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+`;
+
+const GenderBtn = styled.div<{ click: boolean }>`
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  font-weight: 300;
+  border: 1px solid #dcdcdc;
+  color: ${(props) => (props.click ? 'white' : 'black')};
+  background-color: ${(props) =>
+    props.click ? props.theme.mint.deepLighter : 'white'};
+  cursor: pointer;
+  &:hover {
+    border-color: ${(props) => props.theme.mint.deepLighter};
+  }
+`;
+
+export {
+  JoinBtn,
+  JoinWrapper,
+  SubTitle,
+  Title,
+  InputForm,
+  JoinForm,
+  GenderForm,
+  GenderBtn,
+};

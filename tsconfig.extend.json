@@ -7,6 +7,7 @@
       "@components/*": ["./components/*"],
       "@modules/*": ["./modules/*"],
       "@testing/*": ["./test/*"],
+      "@styles/*": ["./styles/*"],
       "assets": ["./assets/*"]
     }
   }

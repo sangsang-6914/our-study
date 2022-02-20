@@ -1,6 +1,6 @@
 import Modal from "@components/common/Modal";
-import { ComponentWrapper, FormError } from "@styles/common.style";
-import { GenderBtn, GenderForm, InputForm, JoinBtn, JoinForm, JoinWrapper, SubTitle, Title } from "@styles/join.style";
+import { ComponentWrapper, FormError, InputForm, LoginJoinBtn } from "@styles/common.style";
+import { GenderBtn, GenderForm, JoinForm, JoinWrapper, SubTitle, Title } from "@styles/join.style";
 import DaumPostcode from "react-daum-postcode";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -147,7 +147,7 @@ function JoinView({onSubmit, onInValid, onPostModalClick, manClick, womanClick, 
               style={{width: '50%'}}
               readOnly
             />
-            <JoinBtn>{t('join.button.signup')}</JoinBtn>
+            <LoginJoinBtn>{t('join.button.signup')}</LoginJoinBtn>
           </JoinForm>
         </JoinWrapper>
       </ComponentWrapper>

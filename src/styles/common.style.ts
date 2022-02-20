@@ -11,13 +11,32 @@ const FormError = styled.div`
   font-size: 13px;
 `
 
-const Overlay = styled.div`
-  position: fixed;
-  top:0;
+const InputForm = styled.input`
   width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 9999;
-`
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #dcdcdc;
+  &::placeholder {
+    color: #dcdcdc;
+  }
+`;
 
-export { ComponentWrapper, FormError, Overlay };
+const LoginJoinBtn = styled.button`
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0px;
+  margin-top: 30px;
+  background-color: ${(props) => props.theme.mint.basic};
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.theme.mint.deepDarker};
+  }
+`;
+
+
+export { ComponentWrapper, FormError, InputForm, LoginJoinBtn };

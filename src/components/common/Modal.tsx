@@ -8,9 +8,10 @@ interface IModalProps {
   closable?: boolean;
   maskClosable?: boolean;
   onClose?: () => void;
+  width?: string;
 }
 
-function Modal({ className, visible, children, closable, maskClosable, onClose }:IModalProps) {
+function Modal({ className, visible, children, closable, maskClosable, onClose, width }:IModalProps) {
 
   useEffect(() => {
     document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`
@@ -42,7 +43,7 @@ function Modal({ className, visible, children, closable, maskClosable, onClose }
         visible={visible}
         onClick={maskClosable ? onMaskClick : undefined}
       >
-        <ModalInner tabIndex={0} className="modal-inner">
+        <ModalInner tabIndex={0} className="modal-inner" width={width}>
           {/* {closable && <CloseButton className="modal-close" onClick={close} />} */}
           {children}
         </ModalInner>

@@ -1,6 +1,6 @@
-import {useForm} from 'react-hook-form';
-import {useTranslation} from 'react-i18next';
+import { join } from '@api/axios';
 import {useState} from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import JoinView from './JoinView';
 interface IForm {
@@ -29,6 +29,15 @@ function Join() {
     } else {
       data.gender = 'W'
     }
+
+    alert('회원가입 완료')
+    join(data)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
 
     navigate('/')
   };

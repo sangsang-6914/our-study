@@ -6,10 +6,13 @@ import {
   Item,
   Items,
   HeaderBtn,
-  Logo,
   Nav,
+  Logo,
   navVariants,
 } from '@styles/header.style';
+import { useState } from 'react';
+import Modal from '@components/common/Modal';
+import Login from '@pages/login/Login';
 
 interface IHeaderViewProps {
   handleChangeLanguage: () => void;
@@ -18,6 +21,11 @@ interface IHeaderViewProps {
 
 function HeaderView({ handleChangeLanguage, navAni }: IHeaderViewProps) {
   const { t, i18n } = useTranslation();
+  const [isLoginModal, setIsLoginModal] = useState(false)
+
+  const showLoginModal = () => {
+    setIsLoginModal(prev => !prev)
+  }
   return (
     <>
       <Nav variants={navVariants} initial="top" animate={navAni}>
@@ -37,7 +45,9 @@ function HeaderView({ handleChangeLanguage, navAni }: IHeaderViewProps) {
           <HeaderBtn onClick={handleChangeLanguage} bgColor="lightMint">
             {i18n.language.includes('ko') ? 'en' : 'ko'}
           </HeaderBtn>
-          <HeaderBtn bgColor="darkMint">{t('header.button.login')}</HeaderBtn>
+          <HeaderBtn bgColor="darkMint" onClick={showLoginModal}>
+            {t('header.button.login')}
+          </HeaderBtn>
           <Link to="/join">
             <HeaderBtn bgColor="lightMint">
               {t('header.button.signup')}
@@ -45,6 +55,18 @@ function HeaderView({ handleChangeLanguage, navAni }: IHeaderViewProps) {
           </Link>
         </Col>
       </Nav>
+      {
+        isLoginModal && (
+          <Modal
+            visible={true}
+            maskClosable={true}
+            onClose={showLoginModal}
+            width="380"
+          >
+            <Login onClose={showLoginModal}/>
+          </Modal>
+        )
+      }
     </>
   );
 }

@@ -8,6 +8,7 @@
       "@modules/*": ["./modules/*"],
       "@testing/*": ["./test/*"],
       "@styles/*": ["./styles/*"],
+      "@api/*": ["./api/*"],
       "assets": ["./assets/*"]
     }
   }

@@ -7,6 +7,7 @@ import Header from '@components/header/Header';
 import { useTranslation } from 'react-i18next';
 import Footer from '@components/footer/Footer';
 import styled from 'styled-components';
+import Login from '@pages/login/Login';
 
 const Wrapper = styled.div`
   min-height: 100vh;

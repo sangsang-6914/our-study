@@ -21,33 +21,6 @@ const SubTitle = styled.div`
 
 const JoinForm = styled.form``;
 
-const InputForm = styled.input`
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #dcdcdc;
-  &::placeholder {
-    color: #dcdcdc;
-  }
-`;
-
-const JoinBtn = styled.button`
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  border: 0px;
-  margin-top: 30px;
-  background-color: ${(props) => props.theme.mint.basic};
-  cursor: pointer;
-  &:hover {
-    background-color: ${(props) => props.theme.mint.deepDarker};
-  }
-`;
-
 const GenderForm = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -71,11 +44,9 @@ const GenderBtn = styled.div<{ click: boolean }>`
 `;
 
 export {
-  JoinBtn,
   JoinWrapper,
   SubTitle,
   Title,
-  InputForm,
   JoinForm,
   GenderForm,
   GenderBtn,

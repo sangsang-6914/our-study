@@ -43,5 +43,10 @@
       "passwordCheck": "Passwords do not match.",
       "mobile": "It is not a valid cell phone format."
     }
+  },
+  "login": {
+    "easyLogin": {
+      "title": "Easy Login"
+    }
   }
 }

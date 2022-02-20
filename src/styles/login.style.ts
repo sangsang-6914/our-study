@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const LoginWrapper = styled.div`
-  height: 360px;
+  height: 400px;
 `;
 
 const LoginForm = styled.form`

@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 
 // 액션타입 지정
 export const INCREASE = 'counter/INCREASE' as const;

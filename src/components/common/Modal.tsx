@@ -1,6 +1,6 @@
-import { ModalInner, ModalOverlay, ModalWrapper } from "@styles/modal.style"
+import { CloseButton, ModalInner, ModalOverlay, ModalWrapper } from "@styles/modal.style"
 import { useEffect } from "react"
-
+import {AiOutlineClose} from 'react-icons/ai'
 interface IModalProps {
   className?: string;
   visible: boolean;
@@ -44,7 +44,11 @@ function Modal({ className, visible, children, closable, maskClosable, onClose, 
         onClick={maskClosable ? onMaskClick : undefined}
       >
         <ModalInner tabIndex={0} className="modal-inner" width={width}>
-          {/* {closable && <CloseButton className="modal-close" onClick={close} />} */}
+          {closable && 
+            <CloseButton className="modal-close" onClick={close}>
+              <AiOutlineClose />
+            </CloseButton>
+          }
           {children}
         </ModalInner>
       </ModalWrapper>

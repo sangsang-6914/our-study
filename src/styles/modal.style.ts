@@ -35,7 +35,16 @@ const ModalInner = styled.div<{width?: string}>`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 20px;
 `
 
-export { ModalWrapper, ModalOverlay, ModalInner }
+const CloseButton = styled.div`
+  text-align: right;
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    color: ${props => props.theme.mint.deepDarker};
+  }
+`
+
+export { ModalWrapper, ModalOverlay, ModalInner, CloseButton }

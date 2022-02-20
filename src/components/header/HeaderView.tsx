@@ -17,15 +17,36 @@ import Login from '@pages/login/Login';
 interface IHeaderViewProps {
   handleChangeLanguage: () => void;
   navAni: AnimationControls;
+  isLogined: boolean;
+  onLogout: () => void;
 }
 
-function HeaderView({ handleChangeLanguage, navAni }: IHeaderViewProps) {
+function HeaderView({ handleChangeLanguage, navAni, isLogined, onLogout }: IHeaderViewProps) {
   const { t, i18n } = useTranslation();
   const [isLoginModal, setIsLoginModal] = useState(false)
 
   const showLoginModal = () => {
     setIsLoginModal(prev => !prev)
   }
+  
+  let button
+  if (isLogined) {
+    button = <HeaderBtn bgColor="darkMint" onClick={onLogout}>
+      {t('header.button.logout')}
+    </HeaderBtn>
+  } else {
+    button = <><HeaderBtn bgColor="darkMint" onClick={showLoginModal}>
+      {t('header.button.login')}
+    </HeaderBtn>
+    <Link to="/join">
+      <HeaderBtn bgColor="lightMint">
+        {t('header.button.signup')}
+      </HeaderBtn>
+    </Link>
+    </>
+    
+  }
+
   return (
     <>
       <Nav variants={navVariants} initial="top" animate={navAni}>
@@ -45,14 +66,7 @@ function HeaderView({ handleChangeLanguage, navAni }: IHeaderViewProps) {
           <HeaderBtn onClick={handleChangeLanguage} bgColor="lightMint">
             {i18n.language.includes('ko') ? 'en' : 'ko'}
           </HeaderBtn>
-          <HeaderBtn bgColor="darkMint" onClick={showLoginModal}>
-            {t('header.button.login')}
-          </HeaderBtn>
-          <Link to="/join">
-            <HeaderBtn bgColor="lightMint">
-              {t('header.button.signup')}
-            </HeaderBtn>
-          </Link>
+          {button}
         </Col>
       </Nav>
       {
@@ -60,6 +74,7 @@ function HeaderView({ handleChangeLanguage, navAni }: IHeaderViewProps) {
           <Modal
             visible={true}
             maskClosable={true}
+            closable={true}
             onClose={showLoginModal}
             width="380"
           >

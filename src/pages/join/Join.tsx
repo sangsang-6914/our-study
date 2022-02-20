@@ -1,4 +1,4 @@
-import { join } from '@api/axios';
+import { joinAPI } from '@api/axios';
 import {useState} from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ function Join() {
     }
 
     alert('회원가입 완료')
-    join(data)
+    joinAPI(data)
       .then(response => {
         console.log(response)
       })

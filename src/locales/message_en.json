@@ -9,7 +9,8 @@
     },
     "button": {
       "login": "Login",
-      "signup": "Sign up"
+      "signup": "Sign up",
+      "logout": "Logout"
     }
   },
   "join": {

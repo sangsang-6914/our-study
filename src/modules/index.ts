@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
-import todos from './todos';
-import locale from './locale';
+import loginInfo from './loginInfo'
+import counter from './counter'
 
 const rootReducer = combineReducers({
-  counter,
-  todos,
-  locale,
+  loginInfo,
+  counter
 });
 
 export default rootReducer;

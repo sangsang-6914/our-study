@@ -1,7 +1,7 @@
 import axios from "axios";
+import { KAKAO_API_KEY } from "./apiKey";
 import { apiClient } from "./customAxios";
 
-const API_KEY = '735b21c68f4ab7d810f8ca1e1578e69e'
 const REDIRECT_URI ='http://localhost:3000/oauth/callback/kakao'
 interface ILoginProps {
   email: string;
@@ -36,7 +36,7 @@ const joinAPI = async (payload: IJoinProps) => {
   return apiData.data
 }
 
-const kakaoLogin = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`
+const kakaoLogin = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
 export {
   loginAPI,

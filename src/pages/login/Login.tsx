@@ -16,7 +16,6 @@ export interface ILoginForm {
 
 function Login ({onClose}:ILoginProps) {
   const navigate = useNavigate()
-  const loginInfo = useSelector((state:RootState) => state.loginInfo)
   const dispatch = useDispatch()
   const moveToJoin = () => {
     onClose()
@@ -45,10 +44,23 @@ function Login ({onClose}:ILoginProps) {
     location.href = kakaoLogin
   }
 
+  const onGoogleSuccess = (response: any) => {
+    const { googleId, profileObj : { email, name } } = response;
+    console.log(googleId)
+    console.log(email, name)
+    // google id -> idtoken -> 백엔드 전달 -> 우리쪽 토큰 받기
+  }
+
+  const onGoogleFail = (error: any) => {
+    console.log(error);
+  }
+
   const props = {
     onSubmit,
     moveToJoin,
-    onKakaoLogin
+    onKakaoLogin,
+    onGoogleSuccess,
+    onGoogleFail
   }
 
   return (

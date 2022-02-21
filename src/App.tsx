@@ -30,7 +30,7 @@ function App() {
       <Helmet>
         <title>{t('title')}</title>
       </Helmet>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Wrapper>
           <Header />
           <Routes>

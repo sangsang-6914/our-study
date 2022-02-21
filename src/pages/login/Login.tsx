@@ -14,6 +14,20 @@ export interface ILoginForm {
   password: string;
 }
 
+interface IGoogleSuccess {
+  accessToken: string;
+  googleId: string;
+  profileObj: {
+    email: string;
+    familyName: string;
+    givenName: string;
+    googleId: string;
+    imageUrl: string;
+    name: string;
+  }
+  tokenId: string;
+}
+
 function Login ({onClose}:ILoginProps) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -44,9 +58,11 @@ function Login ({onClose}:ILoginProps) {
     location.href = kakaoLogin
   }
 
-  const onGoogleSuccess = (response: any) => {
-    const { googleId, profileObj : { email, name } } = response;
+  const onGoogleSuccess = (response: IGoogleSuccess) => {
+    const { accessToken, tokenId, profileObj : { googleId, email, name } } = response;
+    console.log(accessToken)
     console.log(googleId)
+    console.log(tokenId)
     console.log(email, name)
     // google id -> idtoken -> 백엔드 전달 -> 우리쪽 토큰 받기
   }

@@ -2,7 +2,7 @@ import axios from "axios";
 import { KAKAO_API_KEY } from "./apiKey";
 import { apiClient } from "./customAxios";
 
-const REDIRECT_URI ='http://localhost:3000/oauth/callback/kakao'
+const REDIRECT_URI ='http://localhost:3000/our-study/oauth/callback/kakao'
 interface ILoginProps {
   email: string;
   password: string;
@@ -22,17 +22,13 @@ interface IJoinProps {
 }
 
 const loginAPI = async (payload: ILoginProps) => {
-  const apiData = await apiClient.post(`/auth`, {
-    payload
-  })
+  const apiData = await apiClient.post(`/auth`, payload)
   return apiData.data
 }
 
 const joinAPI = async (payload: IJoinProps) => {
   payload.role = 'USEr';
-  const apiData = await apiClient.post(`/join/signUp`, {
-    payload
-  })
+  const apiData = await apiClient.post(`/join/signUp`, payload)
   return apiData.data
 }
 

@@ -106,6 +106,19 @@ const Github = styled.button`
   background-color: #3c4043;
 `
 
+const Facebook = styled.button`
+  background-color: #325ca6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  cursor: pointer;
+`
+
 export {
-  LoginWrapper, Github, Google, KaKao, LoginForm, EasyLogin, EasyLoginList, EasyLoginWrapper, Hr, SubItem, SubList, Title
+  LoginWrapper, Github, Google, KaKao, LoginForm, EasyLogin, EasyLoginList, EasyLoginWrapper, Hr, SubItem, SubList, Title, Facebook
 };

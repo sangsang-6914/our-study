@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { login } from '@modules/loginInfo';
 import Kakao from '@pages/callback/Kakao';
+import GitHub from '@pages/callback/GitHub';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -38,6 +39,7 @@ function App() {
             <Route path="/developer" element={<DeveloperInfo />} />
             <Route path="/join" element={<Join />} />
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
+            <Route path="/oauth/callback/github" element={<GitHub />} />
           </Routes>
           <Footer />
         </Wrapper>

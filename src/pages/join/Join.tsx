@@ -1,6 +1,5 @@
-import { joinAPI } from '@api/axios';
+import { joinAPI } from '@api/login';
 import {useState} from 'react';
-import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import JoinView from './JoinView';
 interface IForm {

@@ -1,7 +1,7 @@
-import { loginAPI, kakaoLogin } from "@api/axios";
-import { RootState } from "@modules/index";
+import { loginAPI } from "@api/login";
+import { githubLogin, kakaoLogin } from "@api/social";
 import { login } from "@modules/loginInfo"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LoginView from "./LoginView";
 
@@ -71,12 +71,17 @@ function Login ({onClose}:ILoginProps) {
     console.log(error);
   }
 
+  const onGithubLogin = () => {
+    location.href = githubLogin
+  }
+
   const props = {
     onSubmit,
     moveToJoin,
     onKakaoLogin,
     onGoogleSuccess,
-    onGoogleFail
+    onGoogleFail,
+    onGithubLogin
   }
 
   return (

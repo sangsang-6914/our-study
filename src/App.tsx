@@ -11,6 +11,9 @@ import { useDispatch } from 'react-redux';
 import { login } from '@modules/loginInfo';
 import Kakao from '@pages/callback/Kakao';
 import GitHub from '@pages/callback/GitHub';
+import Facebook from '@pages/callback/Facebook';
+import Google from '@pages/callback/Google';
+
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -19,6 +22,7 @@ const Wrapper = styled.div`
 `;
 
 function App() {
+  console.log('render')
   const { t } = useTranslation();
   const loginInfo = localStorage.getItem('loginInfo')
   if (loginInfo !== null) {
@@ -40,6 +44,8 @@ function App() {
             <Route path="/join" element={<Join />} />
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
             <Route path="/oauth/callback/github" element={<GitHub />} />
+            <Route path="/oauth/callback/facebook" element={<Facebook />} />
+            <Route path="/oauth/callback/google" element={<Google />} />
           </Routes>
           <Footer />
         </Wrapper>

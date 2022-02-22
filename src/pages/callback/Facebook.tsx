@@ -1,0 +1,32 @@
+import { facebookLoginAPI } from "@api/social"
+import { ComponentWrapper } from "@styles/common.style"
+import qs from 'qs'
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+
+function Facebook () {
+  const {code} = qs.parse(location.search, {
+    ignoreQueryPrefix: true
+  })
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    facebookLoginAPI(String(code))
+    .then(response => {
+      console.log(response)
+      // localStorage에 token 저장 및 관리
+      navigate('/')
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }, [code])
+
+  return (
+    <ComponentWrapper>
+      {code}
+    </ComponentWrapper>
+  )
+}
+
+export default Facebook

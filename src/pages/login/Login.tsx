@@ -1,5 +1,5 @@
 import { loginAPI } from "@api/login";
-import { githubLogin, kakaoLogin } from "@api/social";
+import { facebookLogin, githubLogin, googleLogin, kakaoLogin } from "@api/social";
 import { login } from "@modules/loginInfo"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -58,30 +58,25 @@ function Login ({onClose}:ILoginProps) {
     location.href = kakaoLogin
   }
 
-  const onGoogleSuccess = (response: IGoogleSuccess) => {
-    const { accessToken, tokenId, profileObj : { googleId, email, name } } = response;
-    console.log(accessToken)
-    console.log(googleId)
-    console.log(tokenId)
-    console.log(email, name)
-    // google id -> idtoken -> 백엔드 전달 -> 우리쪽 토큰 받기
-  }
-
-  const onGoogleFail = (error: any) => {
-    console.log(error);
-  }
-
   const onGithubLogin = () => {
     location.href = githubLogin
+  }
+
+  const onFacebookLogin = () => {
+    location.href = facebookLogin
+  }
+
+  const onGoogleLogin = () => {
+    location.href = googleLogin
   }
 
   const props = {
     onSubmit,
     moveToJoin,
     onKakaoLogin,
-    onGoogleSuccess,
-    onGoogleFail,
-    onGithubLogin
+    onGithubLogin,
+    onFacebookLogin,
+    onGoogleLogin
   }
 
   return (

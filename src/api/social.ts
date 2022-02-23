@@ -5,10 +5,10 @@ const KAKAO_API_KEY = '735b21c68f4ab7d810f8ca1e1578e69e'
 const GITHUB_CLIENT_ID = '4c1db9681216f8ee8dcf'
 const FACEBOOK_APP_ID = '510459117161974'
 
-const KAKAO_REDIRECT_URI ='http://localhost:3000/our-study/oauth/callback/kakao'
-const GITHUB_REDIRECT_URI = 'http://localhost:3000/our-study/oauth/callback/github'
-const FACEBOOK_REDIRECT_URI = 'http://localhost:3000/our-study/oauth/callback/facebook'
-const GOOGLE_REDIRECT_URI = 'http://localhost:3000/our-study/oauth/callback/google'
+const KAKAO_REDIRECT_URI =`${process.env.REACT_APP_FRONT}/our-study/oauth/callback/kakao`
+const GITHUB_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/github`
+const FACEBOOK_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/facebook`
+const GOOGLE_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/google`
 
 const kakaoLogin = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`
 const githubLogin = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}`

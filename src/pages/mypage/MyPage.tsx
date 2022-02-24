@@ -31,6 +31,7 @@ const NavTitle = styled.div`
 const NavSubTitle = styled.div<{curLink?: string, selectLink?: string}>`
   font-size: 16px;
   color: ${props => props.curLink === props.selectLink ? props.theme.mint.deepDarker : '#828282' };
+  font-weight: ${props => props.curLink === props.selectLink ? 'bold' : 'normal' };
   margin: 10px 20px;
   cursor: pointer;
   &:hover {
@@ -40,8 +41,6 @@ const NavSubTitle = styled.div<{curLink?: string, selectLink?: string}>`
 
 const MypageComponent = styled.div`
   width: 70vw;
-  height: 90vh;
-  border: 1px solid red;
 `
 
 function MyPage () {
@@ -79,7 +78,7 @@ function MyPage () {
               <NavSubTitle curLink='sns-register' selectLink={selectLink}>SNS 등록</NavSubTitle>
             </Link>
             <Link to="change-pwd" onClick={() => changeLink('change-pwd')}>
-              <NavSubTitle curLink='change-pw' selectLink={selectLink}>비밀번호 변경</NavSubTitle>
+              <NavSubTitle curLink='change-pwd' selectLink={selectLink}>비밀번호 변경</NavSubTitle>
             </Link>
           </NavForm>
         </MypageNav>

@@ -26,7 +26,7 @@ const GenderForm = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-const GenderBtn = styled.div<{ click: boolean }>`
+const GenderBtn = styled.div<{ click?: boolean }>`
   text-align: center;
   padding: 15px;
   font-size: 16px;

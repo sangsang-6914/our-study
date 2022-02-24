@@ -8,7 +8,6 @@ const JoinWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  margin-top: 30px;
   font-size: 20pt;
 `;
 

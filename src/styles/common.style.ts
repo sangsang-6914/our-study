@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ComponentWrapper = styled.div`
-  padding: 100px 300px;
+  padding: 150px 13%;
   min-height: 90vh;
 `;
 

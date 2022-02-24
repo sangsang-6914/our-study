@@ -7,7 +7,7 @@ const Nav = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   top: 0;
-  padding: 20px 300px;
+  padding: 20px 13%;
   position: fixed;
   font-size: 18px;
   z-index: 1;

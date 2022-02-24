@@ -13,6 +13,7 @@ import Kakao from '@pages/callback/Kakao';
 import GitHub from '@pages/callback/GitHub';
 import Facebook from '@pages/callback/Facebook';
 import Google from '@pages/callback/Google';
+import MyPage from '@pages/mypage/MyPage';
 
 
 const Wrapper = styled.div`
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/developer" element={<DeveloperInfo />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/mypage/*" element={<MyPage />} />
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
             <Route path="/oauth/callback/github" element={<GitHub />} />
             <Route path="/oauth/callback/facebook" element={<Facebook />} />

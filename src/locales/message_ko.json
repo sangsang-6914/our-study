@@ -41,12 +41,45 @@
       "required": "필수 입력 조건입니다.",
       "email": "올바른 이메일 형식이 아닙니다.",
       "passwordCheck": "비밀번호가 일치하지 않습니다.",
-      "mobile": "올바른 핸드폰 형식이 아닙니다."
+      "mobile": "올바른 핸드폰 형식이 아닙니다.",
+      "password": "비밀번호는 8자이상 입력하고, 영문, 숫자, 특수문자를 포함해야 합니다."
     }
   },
   "login": {
     "easyLogin": {
       "title": "간편 로그인"
+    }
+  },
+  "mypage": {
+    "nav": {
+      "title": {
+        "home": "HOME",
+        "study": "스터디 관리",
+        "mento": "멘토링 관리",
+        "setting": "설정"
+      },
+      "subTitle": {
+        "notice": "알림",
+        "writeStudy": "작성한 스터디",
+        "submitStudy": "신청한 스터디",
+        "requestStudy": "요청받은 스터디",
+        "writeMento": "작성한 멘토링",
+        "submitMento": "신청한 멘토링",
+        "requestMento": "요청받은 멘토링",
+        "account": "회원정보 수정",
+        "changePwd": "비밀번호 변경",
+        "snsRegister": "SNS 등록"
+      }
+    },
+    "passwordChange": {
+      "title": "비밀번호 변경",
+      "changePwd": "변경할 비밀번호",
+      "originalPwd": "현재 비밀번호",
+      "button": "변경하기"
+    },
+    "account": {
+      "title": "회원정보 수정",
+      "button": "수정하기"
     }
   }
 }

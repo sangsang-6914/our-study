@@ -1,6 +1,8 @@
+import UserInfo from "@components/user/UserInfo"
+
 function ChangePwd () {
   return (
-    <div>changepwd</div>
+    <UserInfo type='password'/>
   )
 }
 

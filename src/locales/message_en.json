@@ -1,6 +1,5 @@
 {
   "title": "Our Study",
-  "hello": "hello",
   "header": {
     "item": {
       "study": "Study",
@@ -42,12 +41,45 @@
       "required": "This is a required entry condition.",
       "email": "This is not a valid email format.",
       "passwordCheck": "Passwords do not match.",
-      "mobile": "It is not a valid cell phone format."
+      "mobile": "It is not a valid cell phone format.",
+      "password": "The password must be at least 8 characters long and must include English letters, numbers, and special characters."
     }
   },
   "login": {
     "easyLogin": {
       "title": "Easy Login"
+    }
+  },
+  "mypage": {
+    "nav": {
+      "title": {
+        "home": "HOME",
+        "study": "Study",
+        "mento": "Mentoring",
+        "setting": "Settings"
+      },
+      "subTitle": {
+        "notice": "Notice",
+        "writeStudy": "Write Study",
+        "submitStudy": "Submit Study",
+        "requestStudy": "Request Study",
+        "writeMento": "Write Mentoring",
+        "submitMento": "Submit Mentoring",
+        "requestMento": "Request Mentoring",
+        "account": "Edit Info",
+        "changePwd": "Change Password",
+        "snsRegister": "SNS Register"
+      }
+    },
+    "passwordChange": {
+      "title": "Change Password",
+      "changePwd": "Change Password",
+      "originalPwd": "Current Password",
+      "button": "Change"
+    },
+    "account": {
+      "title": "Edit member information",
+      "button": "Modify"
     }
   }
 }

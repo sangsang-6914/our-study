@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const ComponentWrapper = styled.div<{type: string}>`
+  padding: ${props => props.type === 'join' ? '150px 13%' : '0px'};
+`
+
 const JoinWrapper = styled.div`
   max-width: 380px;
   margin: 0 auto;
@@ -43,6 +47,7 @@ const GenderBtn = styled.div<{ click?: boolean }>`
 `;
 
 export {
+  ComponentWrapper,
   JoinWrapper,
   SubTitle,
   Title,

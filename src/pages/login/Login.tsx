@@ -1,4 +1,4 @@
-import { loginAPI } from "@api/login";
+import { loginAPI } from "@api/user";
 import { facebookLogin, githubLogin, googleLogin, kakaoLogin } from "@api/social";
 import { login } from "@modules/loginInfo"
 import { useDispatch } from "react-redux";

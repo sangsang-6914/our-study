@@ -7,7 +7,7 @@ const Nav = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   top: 0;
-  padding: 20px 13%;
+  padding: 0px 13%;
   position: fixed;
   font-size: 18px;
   z-index: 1;
@@ -16,6 +16,8 @@ const Nav = styled(motion.div)`
 
 const Col = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Logo = styled.div`
@@ -24,6 +26,7 @@ const Logo = styled.div`
   color: ${(props) => props.theme.mint.basic};
   margin-right: 50px;
   font-style: italic;
+  padding: 20px 0px;
 `;
 
 const Items = styled.ul`
@@ -33,8 +36,58 @@ const Items = styled.ul`
   align-items: center;
 `;
 
-const Item = styled.li`
+const Dropdown = styled.div`
+  float: left;
+  overflow: hidden;
+`
+
+const DropdownMenu = styled.a`
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+  &:hover {
+    color: ${props => props.theme.mint.deepDarker};
+  }
+`
+
+const AbstractDropdownContent = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  &:hover {
+    display: block;
+  }
+`
+
+const StudyDropdownContent = styled(AbstractDropdownContent)`
+  
+`
+
+const MentoDropdownContent = styled(AbstractDropdownContent)`
+`
+
+const ProfileDropdownContent = styled(AbstractDropdownContent)`
+  min-width: 300px;
+  height: 200px;
+`
+
+const Item = styled.li<{type?: string}>`
   margin-right: 40px;
+  padding: 10px 0px;
+  cursor: pointer;
+  &:hover {
+    color: ${props => props.theme.mint.deepDarker};
+  }
+  &:hover ~ ${props => props.type === 'study' ? StudyDropdownContent : props.type === 'mento' ? MentoDropdownContent : null} {
+    display: block;
+  }
 `;
 
 const HeaderBtn = styled.button<{ bgColor: string }>`
@@ -48,7 +101,7 @@ const HeaderBtn = styled.button<{ bgColor: string }>`
   font-size: 15px;
   border: 0px;
   padding: 8px 15px;
-  margin-right: 10px;
+  margin-right: 15px;
   &:hover {
     background-color: ${(props) =>
       props.bgColor === 'darkMint'
@@ -63,7 +116,6 @@ const Notice = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 25px;
-  margin-left: 15px;
   .bell {
     color: #73B2B4;
     &:hover {
@@ -77,11 +129,36 @@ const Profile = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 25px;
+  padding: 10px 0px;
+  &:hover ~ ${ProfileDropdownContent} {
+    display: block;
+  }
   .profile {
     color: #50C785;
     cursor: pointer;
     &:hover {
       color: #429F6B;
+    }
+  }
+`
+
+const LanguageBtn = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+`
+
+const Logout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  margin-top: 1px;
+  cursor: pointer;
+  .logout {
+    color: #FF6464;
+    &:hover {
+      color: #FF3232;
     }
   }
 `
@@ -97,4 +174,4 @@ const navVariants = {
   },
 };
 
-export { Nav, Col, Logo, Items, Item, HeaderBtn, navVariants, Profile, Notice };
+export { Nav, Col, Logo, Items, Item, HeaderBtn, navVariants, Profile, Notice, Dropdown, DropdownMenu, MentoDropdownContent, StudyDropdownContent, ProfileDropdownContent, LanguageBtn, Logout};

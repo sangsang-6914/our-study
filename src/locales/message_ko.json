@@ -2,8 +2,23 @@
   "title": "우리의 스터디",
   "header": {
     "item": {
-      "study": "스터디",
-      "mento": "멘토",
+      "study": {
+        "title": "스터디",
+        "sub": {
+          "developer": "개발",
+          "design": "디자인",
+          "security": "보안",
+          "infra": "인프라",
+          "plan": "기획"
+        }
+      },
+      "mento": {
+        "title": "멘토",
+        "sub": {
+          "mento": "멘토링",
+          "menti": "멘티"
+        }
+      },
       "developer": "개발자 정보"
     },
     "button": {

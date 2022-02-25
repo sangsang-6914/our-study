@@ -2,8 +2,23 @@
   "title": "Our Study",
   "header": {
     "item": {
-      "study": "Study",
-      "mento": "Mento",
+      "study": {
+        "title": "Study",
+        "sub": {
+          "developer": "Developer",
+          "design": "Design",
+          "security": "Security",
+          "infra": "Infra",
+          "plan": "Plan"
+        }
+      },
+      "mento": {
+        "title": "Mento",
+        "sub": {
+          "mento": "Mentoring",
+          "menti": "Menti"
+        }
+      },
       "developer": "Developer Info"
     },
     "button": {

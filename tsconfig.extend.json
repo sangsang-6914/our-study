@@ -9,7 +9,7 @@
       "@testing/*": ["./test/*"],
       "@styles/*": ["./styles/*"],
       "@api/*": ["./api/*"],
-      "assets": ["./assets/*"]
+      "@assets": ["./assets/*"]
     }
   }
 }

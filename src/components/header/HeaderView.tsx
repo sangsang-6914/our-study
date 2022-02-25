@@ -1,6 +1,8 @@
 import { AnimationControls } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { BsBellFill } from 'react-icons/bs'
+import { FaUserCircle } from 'react-icons/fa'
 import {
   Col,
   Item,
@@ -9,6 +11,8 @@ import {
   Nav,
   Logo,
   navVariants,
+  Profile,
+  Notice,
 } from '@styles/header.style';
 import { useState } from 'react';
 import Modal from '@components/common/Modal';
@@ -19,9 +23,10 @@ interface IHeaderViewProps {
   navAni: AnimationControls;
   isLogined: boolean;
   onLogout: () => void;
+  onProfile: () => void;
 }
 
-function HeaderView({ handleChangeLanguage, navAni, isLogined, onLogout }: IHeaderViewProps) {
+function HeaderView({ handleChangeLanguage, navAni, isLogined, onLogout, onProfile }: IHeaderViewProps) {
   const { t, i18n } = useTranslation();
   const [isLoginModal, setIsLoginModal] = useState(false)
 
@@ -31,9 +36,17 @@ function HeaderView({ handleChangeLanguage, navAni, isLogined, onLogout }: IHead
   
   let button
   if (isLogined) {
-    button = <HeaderBtn bgColor="darkMint" onClick={onLogout}>
-      {t('header.button.logout')}
-    </HeaderBtn>
+    button = <>
+      <Notice>
+        <BsBellFill className='bell' size={23} />
+      </Notice>
+      <Profile>
+        <FaUserCircle className='profile' size={27} onClick={onProfile} />
+      </Profile>
+      <HeaderBtn bgColor="darkMint" onClick={onLogout}>
+        {t('header.button.logout')}
+      </HeaderBtn>
+    </>
   } else {
     button = <><HeaderBtn bgColor="darkMint" onClick={showLoginModal}>
       {t('header.button.login')}
@@ -44,7 +57,6 @@ function HeaderView({ handleChangeLanguage, navAni, isLogined, onLogout }: IHead
       </HeaderBtn>
     </Link>
     </>
-    
   }
 
   return (

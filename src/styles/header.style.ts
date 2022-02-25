@@ -58,6 +58,34 @@ const HeaderBtn = styled.button<{ bgColor: string }>`
   cursor: pointer;
 `;
 
+const Notice = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px;
+  margin-left: 15px;
+  .bell {
+    color: #73B2B4;
+    &:hover {
+      color: #5F9EA0;
+    }
+  }
+`
+
+const Profile = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px;
+  .profile {
+    color: #50C785;
+    cursor: pointer;
+    &:hover {
+      color: #429F6B;
+    }
+  }
+`
+
 const navVariants = {
   scroll: {
     borderBottom: '1px solid #d4d3d3',
@@ -69,4 +97,4 @@ const navVariants = {
   },
 };
 
-export { Nav, Col, Logo, Items, Item, HeaderBtn, navVariants };
+export { Nav, Col, Logo, Items, Item, HeaderBtn, navVariants, Profile, Notice };

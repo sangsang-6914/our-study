@@ -46,7 +46,8 @@ function Header() {
     handleChangeLanguage,
     navAni: navAnimation,
     isLogined,
-    onLogout
+    onLogout,
+    onProfile: () => { navigate('/mypage/account') }
   };
 
   return (

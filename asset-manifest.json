@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.js": "/our-study/static/js/main.21ff85e5.js",
+    "main.js": "/our-study/static/js/main.f7b8f232.js",
+    "static/media/america.png": "/our-study/static/media/america.7e17dcdb92416007fab4.png",
+    "static/media/korea.png": "/our-study/static/media/korea.980c074664cf17a963c2.png",
     "index.html": "/our-study/index.html",
-    "main.21ff85e5.js.map": "/our-study/static/js/main.21ff85e5.js.map"
+    "main.f7b8f232.js.map": "/our-study/static/js/main.f7b8f232.js.map"
   },
   "entrypoints": [
-    "static/js/main.21ff85e5.js"
+    "static/js/main.f7b8f232.js"
   ]
 }

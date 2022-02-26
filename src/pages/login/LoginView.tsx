@@ -1,4 +1,3 @@
-import { FACEBOOK_APP_ID, GOOGLE_CLIENT_ID } from "@api/social"
 import { InputForm, LoginJoinBtn } from "@styles/common.style"
 import { EasyLogin, EasyLoginList, EasyLoginWrapper, Facebook, Github, Google, Hr, KaKao, LoginForm, LoginWrapper, SubItem, SubList, Title } from "@styles/login.style"
 import { useEffect } from "react"

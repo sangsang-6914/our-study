@@ -1,23 +1,22 @@
-import { snsLoginAPI } from "@api/social"
+import { snsRegisterAPI } from "@api/social"
 import { ComponentWrapper } from "@styles/common.style"
-import qs from 'qs'
+import qs from "qs"
 import { useEffect } from "react"
 
-function Kakao () {
+function GoogleRegister () {
   const {code} = qs.parse(location.search, {
     ignoreQueryPrefix: true
   })
 
   useEffect(() => {
-    snsLoginAPI(String(code), 'kakao')
+    snsRegisterAPI(String(code), 'google', 'userOid')
       .then(response => {
         console.log(response)
       })
       .catch(error => {
-        console.error(error)
+        console.log(error)
       })
   }, [code])
-  
   return (
     <ComponentWrapper>
       {code}
@@ -25,4 +24,4 @@ function Kakao () {
   )
 }
 
-export default Kakao
+export default GoogleRegister

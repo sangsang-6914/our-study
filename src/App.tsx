@@ -14,6 +14,10 @@ import GitHub from '@pages/callback/GitHub';
 import Facebook from '@pages/callback/Facebook';
 import Google from '@pages/callback/Google';
 import MyPage from '@pages/mypage/MyPage';
+import KakaoRegister from '@pages/callback/KakaoRegister';
+import GithubRegister from '@pages/callback/GithubRegister';
+import FacebookRegister from '@pages/callback/FacebookRegister';
+import GoogleRegister from '@pages/callback/GoogleRegister';
 
 
 const Wrapper = styled.div`
@@ -44,10 +48,15 @@ function App() {
             <Route path="/developer" element={<DeveloperInfo />} />
             <Route path="/join" element={<Join />} />
             <Route path="/mypage/*" element={<MyPage />} />
+            {/* SNS 관련 page */}
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
             <Route path="/oauth/callback/github" element={<GitHub />} />
             <Route path="/oauth/callback/facebook" element={<Facebook />} />
             <Route path="/oauth/callback/google" element={<Google />} />
+            <Route path="/oauth/callback/register/kakao" element={<KakaoRegister />} />
+            <Route path="/oauth/callback/register/github" element={<GithubRegister />} />
+            <Route path="/oauth/callback/register/facebook" element={<FacebookRegister />} />
+            <Route path="/oauth/callback/register/google" element={<GoogleRegister />} />
           </Routes>
           <Footer />
         </Wrapper>

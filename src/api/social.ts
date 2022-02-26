@@ -10,28 +10,38 @@ const GITHUB_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/call
 const FACEBOOK_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/facebook`
 const GOOGLE_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/google`
 
+const KAKAO_REGISTER_REDIRECT_URI =`${process.env.REACT_APP_FRONT}/our-study/oauth/callback/register/kakao`
+const GITHUB_REGISTER_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/register/github`
+const FACEBOOK_REGISTER_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/register/facebook`
+const GOOGLE_REGISTER_REDIRECT_URI = `${process.env.REACT_APP_FRONT}/our-study/oauth/callback/register/google`
+
 const kakaoLogin = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`
 const githubLogin = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}`
 const facebookLogin = `https://www.facebook.com/v2.11/dialog/oauth?client_id=${FACEBOOK_APP_ID}&redirect_uri=${FACEBOOK_REDIRECT_URI}`
 const googleLogin = `https://accounts.google.com/o/oauth2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=online&response_type=code`
 
-const githubLoginAPI = async (code: string) => {
-  const apiData = await apiClient.get(`/auth/github/${code}`)
+const kakaoRegisterLogin = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_API_KEY}&redirect_uri=${KAKAO_REGISTER_REDIRECT_URI}&response_type=code`
+const githubRegisterLogin = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REGISTER_REDIRECT_URI}`
+const facebookRegisterLogin = `https://www.facebook.com/v2.11/dialog/oauth?client_id=${FACEBOOK_APP_ID}&redirect_uri=${FACEBOOK_REGISTER_REDIRECT_URI}`
+const googleRegisterLogin = `https://accounts.google.com/o/oauth2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REGISTER_REDIRECT_URI}&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=online&response_type=code`
+
+const snsRegisterAPI = async (code: string, site: string, userOid: string) => {
+  const apiData = await apiClient.get(`/sns/register/${site}/${userOid}`, {
+    params: {
+      code,
+      state: 'state'
+    }
+  })
   return apiData.data
 }
 
-const kakaoLoginAPI = async (code: string) => {
-  const apiData = await apiClient.get(`/auth/kakao/${code}`)
-  return apiData.data
-}
-
-const googleLoginAPI = async (code: string) => {
-  const apiData = await apiClient.get(`/auth/google/${code}`)
-  return apiData.data
-}
-
-const facebookLoginAPI = async (code: string) => {
-  const apiData = await apiClient.get(`/auth/facebook/${code}`)
+const snsLoginAPI = async (code: string, site: string) => {
+  const apiData = await apiClient.get(`/sns/result/${site}`, {
+    params: {
+      code,
+      state: 'state'
+    }
+  })
   return apiData.data
 }
 
@@ -40,10 +50,10 @@ export {
   githubLogin,
   facebookLogin,
   googleLogin,
-  githubLoginAPI,
-  kakaoLoginAPI,
-  googleLoginAPI,
-  facebookLoginAPI,
-  GOOGLE_CLIENT_ID,
-  FACEBOOK_APP_ID
+  kakaoRegisterLogin,
+  githubRegisterLogin,
+  facebookRegisterLogin,
+  googleRegisterLogin,
+  snsRegisterAPI,
+  snsLoginAPI
 }

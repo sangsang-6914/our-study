@@ -1,4 +1,4 @@
-import { googleLoginAPI } from '@api/social'
+import { snsLoginAPI } from '@api/social'
 import { ComponentWrapper } from '@styles/common.style'
 import qs from 'qs'
 import { useEffect } from 'react'
@@ -11,7 +11,7 @@ function Google () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    googleLoginAPI(String(code))
+    snsLoginAPI(String(code), 'google')
     .then(response => {
       console.log(response)
       // localStorage에 token 저장 및 관리

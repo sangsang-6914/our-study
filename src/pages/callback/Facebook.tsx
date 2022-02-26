@@ -1,4 +1,4 @@
-import { facebookLoginAPI } from "@api/social"
+import { snsLoginAPI } from "@api/social"
 import { ComponentWrapper } from "@styles/common.style"
 import qs from 'qs'
 import { useEffect } from "react"
@@ -11,7 +11,7 @@ function Facebook () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    facebookLoginAPI(String(code))
+    snsLoginAPI(String(code), 'facebook')
     .then(response => {
       console.log(response)
       // localStorage에 token 저장 및 관리

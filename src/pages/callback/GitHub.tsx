@@ -1,5 +1,5 @@
 import { ComponentWrapper } from "@styles/common.style"
-import { githubLoginAPI } from '@api/social'
+import { snsLoginAPI } from '@api/social'
 import qs from 'qs'
 import { useEffect } from "react"
 import { Navigate, useNavigate } from "react-router-dom"
@@ -11,7 +11,7 @@ function GitHub () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    githubLoginAPI(String(code))
+    snsLoginAPI(String(code), 'github')
     .then(response => {
       console.log(response)
       // localStorage에 token 저장 및 관리

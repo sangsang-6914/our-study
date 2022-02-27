@@ -33,7 +33,7 @@ interface IChangePwdProps {
 }
 
 const loginAPI = async (payload: ILoginProps) => {
-  const apiData = await apiClient.post(`/auth`, payload)
+  const apiData = await apiClient.post(`/auth/process`, payload)
   return apiData.data
 }
 

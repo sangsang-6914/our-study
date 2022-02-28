@@ -27,7 +27,6 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  console.log('render')
   const { t } = useTranslation();
   const loginInfo = localStorage.getItem('loginInfo')
   if (loginInfo !== null) {

@@ -9,5 +9,10 @@ declare module 'styled-components' {
       lighter: string;
       deepLighter: string;
     };
+    fontColor: {
+      title: string;
+      subTitle: string;
+      lighter: string;
+    }
   }
 }

@@ -13,11 +13,13 @@ const JoinWrapper = styled.div`
 
 const Title = styled.div`
   font-size: 20pt;
+  font-weight: 500;
+  color: ${props => props.theme.fontColor.title}
 `;
 
 const SubTitle = styled.div`
   font-size: 15px;
-  color: #828282;
+  color: ${props => props.theme.fontColor.subTitle};
   margin-top: 25px;
   margin-bottom: 5px;
 `;

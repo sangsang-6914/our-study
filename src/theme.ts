@@ -8,6 +8,11 @@ export const theme: DefaultTheme = {
     lighter: '#34C6BE',
     deepLighter: '#3ED0C8',
   },
+  fontColor: {
+    title: '#343236',
+    subTitle: '#76737b',
+    lighter: '#787878'
+  }
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -66,7 +71,6 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;; 
   }
   body {
-    font-weight: 500;
     font-family: 'Source Sans Pro', sans-serif;
     line-height: 1.2;
     background-color: white;

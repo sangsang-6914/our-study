@@ -90,7 +90,11 @@ function HeaderView({ handleChangeLanguage, navAni, isLogined, onLogout, onProfi
                 {t('header.item.study.title')}
               </Item>
               <StudyDropdownContent>
-                <DropdownMenu>{t('header.item.study.sub.developer')}</DropdownMenu>
+                <DropdownMenu>
+                  <Link to="/study/developer">
+                    {t('header.item.study.sub.developer')}
+                  </Link>
+                </DropdownMenu>
                 <DropdownMenu>{t('header.item.study.sub.design')}</DropdownMenu>
                 <DropdownMenu>{t('header.item.study.sub.security')}</DropdownMenu>
                 <DropdownMenu>{t('header.item.study.sub.infra')}</DropdownMenu>

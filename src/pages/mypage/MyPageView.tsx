@@ -1,5 +1,6 @@
 import { ComponentWrapper } from "@styles/common.style"
-import { MypageComponent, MypageNav, MyPageWrapper, NavForm, NavSubTitle, NavTitle } from "@styles/mypage.style"
+import { MypageComponent } from "@styles/mypage.style"
+import { NavContainer, NavForm, NavSubTitle, NavTitle, NavWrapper } from "@styles/nav.style"
 import { useTranslation } from "react-i18next"
 import { Routes, Route, Link } from "react-router-dom"
 import Account from "./account/Account"
@@ -15,8 +16,8 @@ function MyPageView ({selectLink, changeLink}:IMyPageProps) {
   const {t} = useTranslation()
   return (
     <ComponentWrapper>
-      <MyPageWrapper>
-        <MypageNav>
+      <NavWrapper>
+        <NavContainer>
           <NavForm>
             <NavTitle>{t('mypage.nav.title.home')}</NavTitle>
             <NavSubTitle curLink='notice' selectLink={selectLink}>{t('mypage.nav.subTitle.notice')}</NavSubTitle>
@@ -46,7 +47,7 @@ function MyPageView ({selectLink, changeLink}:IMyPageProps) {
               <NavSubTitle curLink='sns-register' selectLink={selectLink}>{t('mypage.nav.subTitle.snsRegister')}</NavSubTitle>
             </Link>
           </NavForm>
-        </MypageNav>
+        </NavContainer>
         <MypageComponent>
           <Routes>
             <Route path="sns-register" element={<SNSRegister />} />
@@ -54,7 +55,7 @@ function MyPageView ({selectLink, changeLink}:IMyPageProps) {
             <Route path="change-pwd" element={<ChangePwd />} />
           </Routes>
         </MypageComponent>
-      </MyPageWrapper>
+      </NavWrapper>
     </ComponentWrapper>
   )
 }

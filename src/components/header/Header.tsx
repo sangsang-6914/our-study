@@ -1,19 +1,21 @@
-import { useTranslation } from 'react-i18next';
-import { useAnimation, useViewportScroll } from 'framer-motion';
-import { useEffect } from 'react';
+import {useTranslation} from 'react-i18next';
+import {useAnimation, useViewportScroll} from 'framer-motion';
+import {useEffect} from 'react';
 import HeaderView from './HeaderView';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@modules/index';
-import { logout } from '@modules/loginInfo';
-import { useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '@modules/index';
+import {logout} from '@modules/loginInfo';
+import {useNavigate} from 'react-router-dom';
+import {apiClient} from '@api/customAxios';
 
 function Header() {
-  const { i18n } = useTranslation();
-  const { scrollY } = useViewportScroll();
+  const {i18n} = useTranslation();
+  const {scrollY} = useViewportScroll();
   const navAnimation = useAnimation();
-  const isLogined = useSelector((state:RootState) => state.loginInfo.isLogined)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const loginInfo = useSelector((state: RootState) => state.loginInfo);
+  console.log(loginInfo);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -37,17 +39,24 @@ function Header() {
   };
 
   const onLogout = () => {
-    alert('로그아웃 성공')
-    dispatch(logout())
-    navigate('/')
-  }
+    // 로그아웃 후처리
+    localStorage.removeItem('loginInfo');
+    apiClient.defaults.headers.common['x-access-token'] = '';
+    dispatch(logout());
+
+    alert('로그아웃 성공');
+
+    navigate('/');
+  };
 
   const props = {
     handleChangeLanguage,
     navAni: navAnimation,
-    isLogined,
+    loginInfo,
     onLogout,
-    onProfile: () => { navigate('/mypage/account') }
+    onProfile: () => {
+      navigate('/mypage/account');
+    },
   };
 
   return (

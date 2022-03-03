@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 import Home from '@pages/home/Home';
 import Join from '@pages/join/Join';
 import DeveloperInfo from '@pages/developer/DeveloperInfo';
 import Header from '@components/header/Header';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import Footer from '@components/footer/Footer';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { login } from '@modules/loginInfo';
+import {useDispatch} from 'react-redux';
+import {login} from '@modules/loginInfo';
 import Kakao from '@pages/callback/Kakao';
 import GitHub from '@pages/callback/GitHub';
 import Facebook from '@pages/callback/Facebook';
@@ -20,7 +20,6 @@ import FacebookRegister from '@pages/callback/FacebookRegister';
 import GoogleRegister from '@pages/callback/GoogleRegister';
 import Developer from '@pages/study/developer/Developer';
 
-
 const Wrapper = styled.div`
   min-height: 100vh;
   display: flex;
@@ -28,12 +27,14 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const { t } = useTranslation();
-  const loginInfo = localStorage.getItem('loginInfo')
+  const {t} = useTranslation();
+  // 로그인상태 검증
+  // TODO: 서버에서 sid처리가 끝나면 cookie에서 가져와서 처리하도록 변경
+  const loginInfo = localStorage.getItem('loginInfo');
   if (loginInfo !== null) {
-    const realData = JSON.parse(loginInfo)
-    const dispatch = useDispatch()
-    dispatch(login(realData))
+    const realData = JSON.parse(loginInfo);
+    const dispatch = useDispatch();
+    dispatch(login(realData));
   }
   return (
     <>
@@ -55,10 +56,22 @@ function App() {
             <Route path="/oauth/callback/github" element={<GitHub />} />
             <Route path="/oauth/callback/facebook" element={<Facebook />} />
             <Route path="/oauth/callback/google" element={<Google />} />
-            <Route path="/oauth/callback/register/kakao" element={<KakaoRegister />} />
-            <Route path="/oauth/callback/register/github" element={<GithubRegister />} />
-            <Route path="/oauth/callback/register/facebook" element={<FacebookRegister />} />
-            <Route path="/oauth/callback/register/google" element={<GoogleRegister />} />
+            <Route
+              path="/oauth/callback/register/kakao"
+              element={<KakaoRegister />}
+            />
+            <Route
+              path="/oauth/callback/register/github"
+              element={<GithubRegister />}
+            />
+            <Route
+              path="/oauth/callback/register/facebook"
+              element={<FacebookRegister />}
+            />
+            <Route
+              path="/oauth/callback/register/google"
+              element={<GoogleRegister />}
+            />
           </Routes>
           <Footer />
         </Wrapper>

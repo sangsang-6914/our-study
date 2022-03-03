@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const Nav = styled(motion.div)`
@@ -31,6 +31,7 @@ const Logo = styled.div`
 
 const Items = styled.ul`
   font-size: 15px;
+  color: ${(props) => props.theme.fontColor.subTitle};
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -39,7 +40,7 @@ const Items = styled.ul`
 const Dropdown = styled.div`
   float: left;
   overflow: hidden;
-`
+`;
 
 const DropdownMenu = styled.a`
   float: none;
@@ -50,47 +51,50 @@ const DropdownMenu = styled.a`
   text-align: left;
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.mint.deepDarker};
+    color: ${(props) => props.theme.mint.deepDarker};
   }
-`
+`;
 
 const AbstractDropdownContent = styled.div`
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 130px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   &:hover {
     display: block;
   }
-`
+`;
 
-const StudyDropdownContent = styled(AbstractDropdownContent)`
-  
-`
+const StudyDropdownContent = styled(AbstractDropdownContent)``;
 
-const MentoDropdownContent = styled(AbstractDropdownContent)`
-`
+const MentoDropdownContent = styled(AbstractDropdownContent)``;
 
 const ProfileDropdownContent = styled(AbstractDropdownContent)`
   min-width: 300px;
   height: 200px;
-`
+`;
 
 const Item = styled.li<{type?: string}>`
   margin-right: 40px;
   padding: 10px 0px;
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.mint.deepDarker};
+    color: ${(props) => props.theme.mint.deepDarker};
   }
-  &:hover ~ ${props => props.type === 'study' ? StudyDropdownContent : props.type === 'mento' ? MentoDropdownContent : null} {
+  &:hover
+    ~ ${(props) =>
+      props.type === 'study'
+        ? StudyDropdownContent
+        : props.type === 'mento'
+        ? MentoDropdownContent
+        : null} {
     display: block;
   }
 `;
 
-const HeaderBtn = styled.button<{ bgColor: string }>`
+const HeaderBtn = styled.button<{bgColor: string}>`
   background-color: ${(props) =>
     props.bgColor === 'darkMint'
       ? props.theme.mint.darker
@@ -117,12 +121,12 @@ const Notice = styled.div`
   align-items: center;
   margin-right: 25px;
   .bell {
-    color: #73B2B4;
+    color: #73b2b4;
     &:hover {
-      color: #5F9EA0;
+      color: #5f9ea0;
     }
   }
-`
+`;
 
 const Profile = styled.div`
   display: flex;
@@ -134,19 +138,19 @@ const Profile = styled.div`
     display: block;
   }
   .profile {
-    color: #50C785;
+    color: #50c785;
     cursor: pointer;
     &:hover {
-      color: #429F6B;
+      color: #429f6b;
     }
   }
-`
+`;
 
 const LanguageBtn = styled.img`
   width: 25px;
   height: 25px;
   cursor: pointer;
-`
+`;
 
 const Logout = styled.div`
   display: flex;
@@ -156,12 +160,12 @@ const Logout = styled.div`
   margin-top: 1px;
   cursor: pointer;
   .logout {
-    color: #FF6464;
+    color: #ff6464;
     &:hover {
-      color: #FF3232;
+      color: #ff3232;
     }
   }
-`
+`;
 
 const navVariants = {
   scroll: {
@@ -174,4 +178,21 @@ const navVariants = {
   },
 };
 
-export { Nav, Col, Logo, Items, Item, HeaderBtn, navVariants, Profile, Notice, Dropdown, DropdownMenu, MentoDropdownContent, StudyDropdownContent, ProfileDropdownContent, LanguageBtn, Logout};
+export {
+  Nav,
+  Col,
+  Logo,
+  Items,
+  Item,
+  HeaderBtn,
+  navVariants,
+  Profile,
+  Notice,
+  Dropdown,
+  DropdownMenu,
+  MentoDropdownContent,
+  StudyDropdownContent,
+  ProfileDropdownContent,
+  LanguageBtn,
+  Logout,
+};

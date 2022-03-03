@@ -1,48 +1,52 @@
-import { ILoginForm } from "@pages/login/Login";
+import {ILoginForm} from '@pages/login/Login';
 
 export const LOGIN = 'loginInfo/LOGIN' as const;
 export const LOGOUT = 'loginInfo/LOGOUT' as const;
 
-
-export const login = (payload:ILoginForm) => ({
+export const login = (payload: LoginInfoState) => ({
   type: LOGIN,
-  payload: payload
-})
+  payload: payload,
+});
 
 export const logout = () => ({
-  type: LOGOUT
-})
+  type: LOGOUT,
+});
 
-type LoginInfoState = {
+export type LoginInfoState = {
+  oid: string;
   email: string;
   name: string;
-  isLogined: boolean;
-}
+  mobile: string;
+  role?: string;
+  isLogined?: boolean;
+  a_c_t?: string;
+};
 
-type LoginInfoAction = ReturnType<typeof login> | ReturnType<typeof logout>
+type LoginInfoAction = ReturnType<typeof login> | ReturnType<typeof logout>;
 
-const initialState:LoginInfoState = {
+const initialState: LoginInfoState = {
+  oid: '',
   email: '',
   name: '',
-  isLogined: false
-}
+  mobile: '',
+  role: '',
+  isLogined: false,
+  a_c_t: '',
+};
 
-const loginInfo = (state:LoginInfoState = initialState, action: LoginInfoAction) => {
+const loginInfo = (
+  state: LoginInfoState = initialState,
+  action: LoginInfoAction,
+) => {
   switch (action.type) {
     case LOGIN:
-      const loginData = {
-        email: action.payload.email,
-        isLogined: true,
-        name: 'TEST'
-      }
-      localStorage.setItem('loginInfo', JSON.stringify(loginData))
-      return loginData
+      console.log(action.payload);
+      return action.payload;
     case LOGOUT:
-      localStorage.removeItem('loginInfo')
-      return initialState
+      return initialState;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default loginInfo
+export default loginInfo;

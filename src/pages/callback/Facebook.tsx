@@ -1,32 +1,30 @@
-import { snsLoginAPI } from "@api/social"
-import { ComponentWrapper } from "@styles/common.style"
-import qs from 'qs'
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import {snsLoginAPI} from '@api/social';
+import {ComponentWrapper} from '@styles/common.style';
+import {handleException} from '@utils/errorUtils';
+import qs from 'qs';
+import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
-function Facebook () {
+function Facebook() {
   const {code} = qs.parse(location.search, {
-    ignoreQueryPrefix: true
-  })
-  const navigate = useNavigate()
+    ignoreQueryPrefix: true,
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
-    snsLoginAPI(String(code), 'facebook')
-    .then(response => {
-      console.log(response)
-      // localStorage에 token 저장 및 관리
-      navigate('/')
-    })
-    .catch(error => {
-      console.error(error)
-    })
-  }, [code])
+    const snsLogin = async () => {
+      try {
+        const response = await snsLoginAPI(String(code), 'facebook');
+        console.log(response.data);
+        navigate('/');
+      } catch (err) {
+        handleException(err);
+      }
+    };
+    snsLogin();
+  }, [code]);
 
-  return (
-    <ComponentWrapper>
-      {code}
-    </ComponentWrapper>
-  )
+  return <ComponentWrapper>{code}</ComponentWrapper>;
 }
 
-export default Facebook
+export default Facebook;

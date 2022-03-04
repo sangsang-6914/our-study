@@ -27,21 +27,21 @@ const facebookRegisterLogin = `https://www.facebook.com/v2.11/dialog/oauth?clien
 const googleRegisterLogin = `https://accounts.google.com/o/oauth2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REGISTER_REDIRECT_URI}&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=online&response_type=code`;
 
 const snsRegisterAPI = async (code: string, site: string, userOid: string) => {
-  const apiData = await apiClient.get(`/sns/register/${site}/${userOid}`, {
+  return await apiClient.get(`/sns/register/${site}/${userOid}`, {
     params: {
       code,
     },
+    withCredentials: true,
   });
-  return apiData.data;
 };
 
 const snsLoginAPI = async (code: string, site: string) => {
-  const apiData = await apiClient.get(`/sns/result/${site}`, {
+  return await apiClient.get(`/sns/result/${site}`, {
     params: {
       code,
     },
+    withCredentials: true,
   });
-  return apiData.data;
 };
 
 export {

@@ -1,4 +1,4 @@
-import { apiClient } from "./customAxios";
+import {apiClient} from './customAxios';
 interface ILoginProps {
   email: string;
   password: string;
@@ -33,29 +33,25 @@ interface IChangePwdProps {
 }
 
 const loginAPI = async (payload: ILoginProps) => {
-  const apiData = await apiClient.post(`/auth/process`, payload)
-  return apiData.data
-}
+  return await apiClient.post(`/auth/process`, payload, {
+    withCredentials: true,
+  });
+};
 
 const joinAPI = async (payload: IJoinProps) => {
-  payload.role = 'USEr';
-  const apiData = await apiClient.post(`/join/signUp`, payload)
-  return apiData.data
-}
+  return await apiClient.post(`/join/signUp`, payload, {
+    withCredentials: true,
+  });
+};
 
 const updateUser = async (payload: IModifyProps) => {
-  const apiData = await apiClient.post(`/user/update`, payload)
-  return apiData.data
-}
+  const apiData = await apiClient.post(`/user/update`, payload);
+  return apiData.data;
+};
 
 const updatePwd = async (payload: IChangePwdProps) => {
-  const apiData = await apiClient.post(`/user/changePwd`, payload)
-  return apiData.data
-}
+  const apiData = await apiClient.post(`/user/changePwd`, payload);
+  return apiData.data;
+};
 
-export {
-  loginAPI,
-  joinAPI,
-  updateUser,
-  updatePwd
-}
+export {loginAPI, joinAPI, updateUser, updatePwd};

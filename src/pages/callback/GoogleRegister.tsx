@@ -1,27 +1,30 @@
-import { snsRegisterAPI } from "@api/social"
-import { ComponentWrapper } from "@styles/common.style"
-import qs from "qs"
-import { useEffect } from "react"
+import {snsRegisterAPI} from '@api/social';
+import {RootState} from '@modules/index';
+import {ComponentWrapper} from '@styles/common.style';
+import {handleException} from '@utils/errorUtils';
+import qs from 'qs';
+import {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 
-function GoogleRegister () {
+function GoogleRegister() {
   const {code} = qs.parse(location.search, {
-    ignoreQueryPrefix: true
-  })
+    ignoreQueryPrefix: true,
+  });
+
+  const userOid = useSelector((state: RootState) => state.loginInfo.oid);
 
   useEffect(() => {
-    snsRegisterAPI(String(code), 'google', 'userOid')
-      .then(response => {
-        console.log(response)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }, [code])
-  return (
-    <ComponentWrapper>
-      {code}
-    </ComponentWrapper>
-  )
+    const snsRegister = async () => {
+      try {
+        const response = await snsRegisterAPI(String(code), 'google', userOid);
+        console.log(response.data);
+      } catch (err) {
+        handleException(err);
+      }
+    };
+    snsRegister();
+  }, [code]);
+  return <ComponentWrapper>{code}</ComponentWrapper>;
 }
 
-export default GoogleRegister
+export default GoogleRegister;

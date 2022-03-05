@@ -1,6 +1,7 @@
 import {joinAPI, updatePwd, updateUser} from '@api/user';
+import { IUserData } from '@pages/mypage/account/Account';
 import {handleException} from '@utils/errorUtils';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import UserInfoView from './UserInfoView';
 interface IForm {
@@ -18,14 +19,22 @@ interface IForm {
 
 interface IUserInfoProps {
   type: string;
+  userinfo?: IUserData
 }
 
-function UserInfo({type}: IUserInfoProps) {
+function UserInfo({type, userinfo}: IUserInfoProps) {
   const navigate = useNavigate();
 
   const [manClick, setManClick] = useState(true);
   const [womanClick, setWomanClick] = useState(false);
   const [isPostModal, setIsPostModal] = useState(false);
+
+  useEffect(() => {
+    if (userinfo?.gender === 'W') {
+      setManClick(false)
+      setWomanClick(true)
+    }
+  }, [userinfo])
 
   const onSubmit = (data: IForm) => {
     // 회원가입 API 호출
@@ -36,14 +45,7 @@ function UserInfo({type}: IUserInfoProps) {
       // 회원정보 변경
     } else if (type === 'modify') {
       setGender(data);
-      updateUser(data)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      alert('정보수정 완료');
+      update(data)
 
       // 비밀번호 변경
     } else {
@@ -68,6 +70,16 @@ function UserInfo({type}: IUserInfoProps) {
       handleException(err);
     }
   };
+
+  const update = async (data: IForm) => {
+    try {
+      const response = await updateUser(data, userinfo?.oid);
+      console.log(response.data)
+      alert('수정 완료')
+    } catch (err) {
+      handleException(err)
+    }
+  }
 
   const setGender = (data: IForm) => {
     if (manClick) {
@@ -108,6 +120,7 @@ function UserInfo({type}: IUserInfoProps) {
     womanClick,
     setIsPostModal,
     type,
+    userinfo,
   };
 
   return <UserInfoView {...props} />;

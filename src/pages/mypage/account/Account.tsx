@@ -6,26 +6,33 @@ import { useEffect } from "react"
 import { useQuery } from "react-query"
 import { useSelector } from "react-redux"
 
-interface IUserData  {
-  userinfo: {
-    address: string;
-    addressDetail: string;
-    birthdate: string;
-    email: string;
-    gender: string;
-  }
+export interface IUserData  {
+  email: string;
+  password: string;
+  username: string;
+  mobile: string;
+  birthdate: string;
+  gender: string;
+  address: string;
+  addressDetail: string;
+  postNum: string;
+  roles: string;
+  oid: string;
 }
 
 function Account () {
   const userOid = useSelector((state:RootState) => state.loginInfo.oid)
-  const {data, error, isLoading} = useQuery<IUserData>("userData", () => getUser(userOid))
-  console.log(error)
-
+  const {data, isLoading} = useQuery<IUserData, Error>("userData", () => getUser(userOid), {
+    retry: false,
+    onError: (error) => handleException(error),
+    refetchOnWindowFocus: false
+  })
+  
   return (
     <>
       {
         isLoading ? 'loading....' : (
-          <UserInfo type='modify' />
+          <UserInfo type='modify' userinfo={data} />
         )
       }
     </>

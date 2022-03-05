@@ -35,7 +35,6 @@ function Login({onClose}: ILoginProps) {
       // accesstoken save => localStorage vs Cookie ?
       const tokenPayload = accessToken.split('.')[1];
       const tokenObj = JWTParseToObject(tokenPayload);
-      console.log(tokenObj);
       const loginInfo: LoginInfoState = {
         oid: tokenObj.userinfo.oid,
         email: tokenObj.userinfo.email,

@@ -10,7 +10,7 @@ interface IJoinProps {
   password: string;
   userName: string;
   mobile: string;
-  birthdata?: string;
+  birthdate?: string;
   gender: string;
   address: string;
   addressDetail?: string;
@@ -21,7 +21,7 @@ interface IJoinProps {
 interface IModifyProps {
   userName: string;
   mobile: string;
-  birthdata?: string;
+  birthdate?: string;
   gender: string;
   address: string;
   addressDetail?: string;
@@ -44,16 +44,14 @@ const joinAPI = async (payload: IJoinProps) => {
 };
 
 const getUser = async (oid: string) => {
-    const {data: {dataMap}} = await apiClient.get(`/user/${oid}`);
-    console.log(dataMap)
-    return dataMap
+    const {data: {dataMap: {userinfo}}} = await apiClient.get(`/user/${oid}`);
+    return userinfo
 }
 
-const updateUser = async (payload: IModifyProps) => {
-  const apiData = await apiClient.post(`/user/update`, payload, {
+const updateUser = async (payload: IModifyProps, oid?: string) => {
+  return await apiClient.patch(`/user/${oid}`, payload, {
     withCredentials: true,
   });
-  return apiData.data;
 };
 
 const updatePwd = async (payload: IChangePwdProps) => {

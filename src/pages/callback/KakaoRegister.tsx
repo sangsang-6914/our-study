@@ -11,7 +11,6 @@ function KakaoRegister() {
     ignoreQueryPrefix: true,
   });
   const userOid = useSelector((state: RootState) => state.loginInfo.oid);
-  console.log(userOid);
 
   useEffect(() => {
     const snsRegister = async () => {

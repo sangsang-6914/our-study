@@ -12,6 +12,8 @@ export const handleException = (error: any) => {
     const data: IError = error.response.data;
     if (data.statusCode === 404) {
       alert('요청하려는 URL을 찾을 수 없습니다.');
+    } else if (data.statusCode === 403) {
+      alert('403')
     } else {
       alert(data.errorMessage);
     }

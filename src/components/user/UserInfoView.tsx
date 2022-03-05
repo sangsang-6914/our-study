@@ -1,4 +1,5 @@
 import Modal from "@components/common/Modal";
+import { IUserData } from "@pages/mypage/account/Account";
 import { FormError, InputForm, LoginJoinBtn } from "@styles/common.style";
 import { ComponentWrapper, GenderBtn, GenderForm, JoinForm, JoinWrapper, SubTitle, Title } from "@styles/join.style";
 import DaumPostcode from "react-daum-postcode";
@@ -17,6 +18,7 @@ interface IJoinViewProps {
   isPostModal: boolean;
   setIsPostModal: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
+  userinfo?: IUserData;
 }
 
 interface IPostData {
@@ -30,8 +32,21 @@ interface IPostData {
   zonecode: string;
 }
 
-function UserInfoView({onSubmit, onInValid, onPostModalClick, manClick, womanClick, onManClick, onWomanClick, isPostModal, setIsPostModal, type }:IJoinViewProps) {
-  const { register, formState: {errors}, handleSubmit, getValues, setFocus, setValue} = useForm({ mode: 'onChange'})
+function UserInfoView({onSubmit, onInValid, onPostModalClick, manClick, womanClick, onManClick, onWomanClick, isPostModal, setIsPostModal, type, userinfo }:IJoinViewProps) {
+  const { register, formState: {errors}, handleSubmit, getValues, setFocus, setValue} = useForm({ 
+    mode: 'onChange',
+    defaultValues: {
+      originalPassword: '',
+      password: '',
+      passwordCheck: '',
+      userName: userinfo?.username,
+      email: userinfo?.email,
+      address: userinfo?.address,
+      addressDetail: userinfo?.addressDetail,
+      postNum: userinfo?.postNum,
+      mobile: userinfo?.mobile
+    }
+  })
   const {t} = useTranslation()
 
   const onCompletePost = (data: IPostData) => {

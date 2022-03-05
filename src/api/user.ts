@@ -1,3 +1,4 @@
+import { handleException } from '@utils/errorUtils';
 import {apiClient} from './customAxios';
 interface ILoginProps {
   email: string;
@@ -39,19 +40,27 @@ const loginAPI = async (payload: ILoginProps) => {
 };
 
 const joinAPI = async (payload: IJoinProps) => {
-  return await apiClient.post(`/join/signUp`, payload, {
-    withCredentials: true,
-  });
+  return await apiClient.post(`/join/signUp`, payload);
 };
 
+const getUser = async (oid: string) => {
+    const {data: {dataMap}} = await apiClient.get(`/user/${oid}`);
+    console.log(dataMap)
+    return dataMap
+}
+
 const updateUser = async (payload: IModifyProps) => {
-  const apiData = await apiClient.post(`/user/update`, payload);
+  const apiData = await apiClient.post(`/user/update`, payload, {
+    withCredentials: true,
+  });
   return apiData.data;
 };
 
 const updatePwd = async (payload: IChangePwdProps) => {
-  const apiData = await apiClient.post(`/user/changePwd`, payload);
+  const apiData = await apiClient.post(`/user/changePwd`, payload, {
+    withCredentials: true,
+  });
   return apiData.data;
 };
 
-export {loginAPI, joinAPI, updateUser, updatePwd};
+export {loginAPI, joinAPI, updateUser, updatePwd, getUser};

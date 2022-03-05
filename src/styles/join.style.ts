@@ -37,7 +37,7 @@ const GenderBtn = styled.div<{ click?: boolean }>`
   padding: 15px;
   font-size: 16px;
   border-radius: 5px;
-  font-weight: 300;
+  font-weight: ${props => props.click ? 'bold' : '300'};
   border: 1px solid #dcdcdc;
   color: ${(props) => (props.click ? 'white' : 'black')};
   background-color: ${(props) =>

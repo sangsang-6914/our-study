@@ -3,7 +3,7 @@ import { selectNav } from "@modules/selectMenu"
 import { ComponentWrapper } from "@styles/common.style"
 import { DeveloperComponent } from "@styles/developer.style"
 import {  NavContainer, NavForm, NavSubTitle, NavTitle, NavWrapper } from "@styles/nav.style"
-import { useState } from "react"
+import { changeMenuForRefresh } from "@utils/commonUtils"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Route, Routes } from "react-router-dom"
 import FreeBoard from "./FreeBoard"
@@ -12,8 +12,11 @@ import Study from "./Study"
 
 function Developer () {
   const selectMenu = useSelector((state:RootState) => state.selectMenu.navMenu)
-  console.log(selectMenu)
   const dispatch = useDispatch()
+  
+  if (selectMenu === '') {
+    changeMenuForRefresh()
+  }
   const changeLink = (link:string) => {
     dispatch(selectNav(link))
   }

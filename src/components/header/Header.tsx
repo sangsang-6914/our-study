@@ -14,7 +14,6 @@ function Header() {
   const {scrollY} = useViewportScroll();
   const navAnimation = useAnimation();
   const loginInfo = useSelector((state: RootState) => state.loginInfo);
-  console.log(loginInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

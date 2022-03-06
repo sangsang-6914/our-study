@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import loginInfo from './loginInfo'
-import counter from './counter'
+import selectMenu from './selectMenu';
 
 const rootReducer = combineReducers({
   loginInfo,
-  counter
+  selectMenu,
 });
 
 export default rootReducer;

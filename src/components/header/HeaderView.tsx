@@ -28,13 +28,15 @@ import {useState} from 'react';
 import Modal from '@components/common/Modal';
 import Login from '@pages/login/Login';
 import {LoginInfoState} from '@modules/loginInfo';
+import selectMenu, { selectNav } from '@modules/selectMenu';
+import { useDispatch } from 'react-redux';
 
 interface IHeaderViewProps {
   handleChangeLanguage: () => void;
   navAni: AnimationControls;
   loginInfo?: LoginInfoState;
   onLogout: () => void;
-  onProfile: () => void;
+  changeMenu: (menu: string) => void;
 }
 
 function HeaderView({
@@ -42,7 +44,7 @@ function HeaderView({
   navAni,
   loginInfo,
   onLogout,
-  onProfile,
+  changeMenu,
 }: IHeaderViewProps) {
   const {t, i18n} = useTranslation();
   const [isLoginModal, setIsLoginModal] = useState(false);
@@ -56,9 +58,11 @@ function HeaderView({
     button = (
       <>
         <Dropdown>
+          <Link to="/mypage/account" onClick={() => changeMenu('account')}>
           <Profile>
-            <FaUserCircle className="profile" size={27} onClick={onProfile} />
+            <FaUserCircle className="profile" size={27} />
           </Profile>
+          </Link>
           <ProfileDropdownContent></ProfileDropdownContent>
         </Dropdown>
         <Notice>
@@ -97,7 +101,7 @@ function HeaderView({
               <Item type="study">{t('header.item.study.title')}</Item>
               <StudyDropdownContent>
                 <DropdownMenu>
-                  <Link to="/study/developer">
+                  <Link to="/study/developer/study" onClick={() => changeMenu('study')}>
                     {t('header.item.study.sub.developer')}
                   </Link>
                 </DropdownMenu>

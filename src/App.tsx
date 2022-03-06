@@ -50,7 +50,7 @@ function App() {
             <Route path="/join" element={<Join />} />
             <Route path="/mypage/*" element={<MyPage />} />
             {/* Study */}
-            <Route path="/study/developer" element={<Developer />} />
+            <Route path="/study/developer/*" element={<Developer />} />
             {/* SNS 관련 page */}
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
             <Route path="/oauth/callback/github" element={<GitHub />} />

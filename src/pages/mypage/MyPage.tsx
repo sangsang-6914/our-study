@@ -1,15 +1,19 @@
+import { RootState } from "@modules/index"
+import { selectNav } from "@modules/selectMenu"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import MyPageView from "./MyPageView"
 
 function MyPage () {
-  const [selectLink, setSelectLink] = useState('account')
+  const selectMenu = useSelector((state: RootState) => state.selectMenu.navMenu)
+  const dispatch = useDispatch()
   const changeLink = (link: string) => {
-    setSelectLink(link)
+    dispatch(selectNav(link))
   }
 
   const props = {
-    selectLink,
-    changeLink
+    changeLink,
+    selectMenu
   }
 
   return (

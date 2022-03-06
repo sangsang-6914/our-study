@@ -1,5 +1,3 @@
-import {ILoginForm} from '@pages/login/Login';
-
 export const LOGIN = 'loginInfo/LOGIN' as const;
 export const LOGOUT = 'loginInfo/LOGOUT' as const;
 
@@ -40,7 +38,9 @@ const loginInfo = (
 ) => {
   switch (action.type) {
     case LOGIN:
-      return action.payload;
+      return {
+        ...action.payload
+      }
     case LOGOUT:
       return initialState;
     default:

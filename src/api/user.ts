@@ -54,11 +54,10 @@ const updateUser = async (payload: IModifyProps, oid?: string) => {
   });
 };
 
-const updatePwd = async (payload: IChangePwdProps) => {
-  const apiData = await apiClient.post(`/user/changePwd`, payload, {
+const updatePwd = async (payload: IChangePwdProps, oid?: string) => {
+  return await apiClient.patch(`/user/change/password/${oid}`, payload, {
     withCredentials: true,
   });
-  return apiData.data;
 };
 
 export {loginAPI, joinAPI, updateUser, updatePwd, getUser};

@@ -1,7 +1,9 @@
 import {joinAPI, updatePwd, updateUser} from '@api/user';
+import { RootState } from '@modules/index';
 import { IUserData } from '@pages/mypage/account/Account';
 import {handleException} from '@utils/errorUtils';
 import {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import UserInfoView from './UserInfoView';
 interface IForm {
@@ -36,6 +38,11 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
     }
   }, [userinfo])
 
+  let userOid = ''
+  if (type === 'password') {
+    userOid = useSelector((state:RootState) => state.loginInfo.oid)
+  }
+
   const onSubmit = (data: IForm) => {
     // 회원가입 API 호출
     if (type === 'join') {
@@ -49,14 +56,7 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
 
       // 비밀번호 변경
     } else {
-      updatePwd(data)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      alert('비밀번호 변경 완료');
+      updatePassword(data)
     }
   };
 
@@ -77,7 +77,18 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
       console.log(response.data)
       alert('수정 완료')
     } catch (err) {
-      handleException(err)
+      handleException(err);
+    }
+  }
+  
+  const updatePassword = async (data: IForm) => {
+    try {
+      const response = await updatePwd(data, userOid);
+      console.log(response.data);
+      alert('변경 완료')
+      navigate('/')
+    } catch (err) {
+      handleException(err);
     }
   }
 

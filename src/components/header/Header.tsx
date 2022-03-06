@@ -7,6 +7,7 @@ import {RootState} from '@modules/index';
 import {logout} from '@modules/loginInfo';
 import {useNavigate} from 'react-router-dom';
 import {apiClient} from '@api/customAxios';
+import { selectNav } from '@modules/selectMenu';
 
 function Header() {
   const {i18n} = useTranslation();
@@ -54,9 +55,7 @@ function Header() {
     navAni: navAnimation,
     loginInfo,
     onLogout,
-    onProfile: () => {
-      navigate('/mypage/account');
-    },
+    changeMenu: (menu: string) => dispatch(selectNav(menu))
   };
 
   return (

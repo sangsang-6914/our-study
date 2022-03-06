@@ -9,7 +9,8 @@ function MyPage () {
   const dispatch = useDispatch()
   // 화면 refresh로 들어온 경우 선택메뉴 재정의를 위한처리
   if (selectMenu === '') {
-    changeMenuForRefresh()
+    const curMenu = changeMenuForRefresh()
+    dispatch(selectNav(curMenu))
   }
   const changeLink = (link: string) => {
     dispatch(selectNav(link))

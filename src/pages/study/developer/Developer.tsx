@@ -13,9 +13,10 @@ import Study from "./Study"
 function Developer () {
   const selectMenu = useSelector((state:RootState) => state.selectMenu.navMenu)
   const dispatch = useDispatch()
-  
+
   if (selectMenu === '') {
-    changeMenuForRefresh()
+    const curMenu = changeMenuForRefresh()
+    dispatch(selectNav(curMenu))
   }
   const changeLink = (link:string) => {
     dispatch(selectNav(link))

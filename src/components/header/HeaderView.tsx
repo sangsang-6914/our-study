@@ -28,8 +28,9 @@ import {useState} from 'react';
 import Modal from '@components/common/Modal';
 import Login from '@pages/login/Login';
 import {LoginInfoState} from '@modules/loginInfo';
-import selectMenu, { selectNav } from '@modules/selectMenu';
+import selectMenu, { selectHeader, selectNav } from '@modules/selectMenu';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 interface IHeaderViewProps {
   handleChangeLanguage: () => void;
@@ -37,6 +38,9 @@ interface IHeaderViewProps {
   loginInfo?: LoginInfoState;
   onLogout: () => void;
   changeMenu: (menu: string) => void;
+  changeMenuAndHeader: (menu: string, headerMenu: string) => void;
+  changeHeaderMenu: (menu: string) => void;
+  selectHeaderMenu: string;
 }
 
 function HeaderView({
@@ -45,6 +49,9 @@ function HeaderView({
   loginInfo,
   onLogout,
   changeMenu,
+  changeMenuAndHeader,
+  changeHeaderMenu,
+  selectHeaderMenu,
 }: IHeaderViewProps) {
   const {t, i18n} = useTranslation();
   const [isLoginModal, setIsLoginModal] = useState(false);
@@ -90,18 +97,18 @@ function HeaderView({
     <>
       <Nav variants={navVariants} initial="top" animate={navAni}>
         <Col>
-          <Logo>
+          <Logo onClick={() => changeHeaderMenu('')}>
             <Link to="/">Our Study</Link>
           </Logo>
           <Items>
-            <Item>
+            <Item curLink="developer" selectLink={selectHeaderMenu} onClick={() => changeHeaderMenu('developer')}>
               <Link to="/developer">{t('header.item.developer')}</Link>
             </Item>
             <Dropdown>
-              <Item type="study">{t('header.item.study.title')}</Item>
+              <Item type="study" curLink="study" selectLink={selectHeaderMenu} >{t('header.item.study.title')}</Item>
               <StudyDropdownContent>
                 <DropdownMenu>
-                  <Link to="/study/developer/study" onClick={() => changeMenu('study')}>
+                  <Link to="/study/developer/study" onClick={() => changeMenuAndHeader('study', 'study')}>
                     {t('header.item.study.sub.developer')}
                   </Link>
                 </DropdownMenu>
@@ -114,7 +121,7 @@ function HeaderView({
               </StudyDropdownContent>
             </Dropdown>
             <Dropdown>
-              <Item type="mento">{t('header.item.mento.title')}</Item>
+              <Item type="mento" curLink="mento" selectLink="developer">{t('header.item.mento.title')}</Item>
               <MentoDropdownContent>
                 <DropdownMenu>{t('header.item.mento.sub.mento')}</DropdownMenu>
                 <DropdownMenu>{t('header.item.mento.sub.menti')}</DropdownMenu>

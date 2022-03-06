@@ -76,9 +76,11 @@ const ProfileDropdownContent = styled(AbstractDropdownContent)`
   height: 200px;
 `;
 
-const Item = styled.li<{type?: string}>`
+const Item = styled.li<{type?: string, curLink?: string, selectLink?: string}>`
   margin-right: 40px;
   padding: 10px 0px;
+  color: ${props => props.curLink === props.selectLink ? props.theme.mint.deepDarker : props.theme.fontColor.subTitle };
+  font-weight: ${props => props.curLink === props.selectLink ? 'bold' : 'normal' };
   cursor: pointer;
   &:hover {
     color: ${(props) => props.theme.mint.deepDarker};

@@ -7,7 +7,8 @@ import {RootState} from '@modules/index';
 import {logout} from '@modules/loginInfo';
 import {useNavigate} from 'react-router-dom';
 import {apiClient} from '@api/customAxios';
-import { selectNav } from '@modules/selectMenu';
+import { selectHeader, selectNav } from '@modules/selectMenu';
+import { changeHeaderMenuForRefresh } from '@utils/commonUtils';
 
 function Header() {
   const {i18n} = useTranslation();
@@ -16,6 +17,13 @@ function Header() {
   const loginInfo = useSelector((state: RootState) => state.loginInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const selectHeaderMenu = useSelector((state:RootState) => state.selectMenu.headerMenu)
+
+  if (selectHeaderMenu === '') {
+    const curHeaderMenu = changeHeaderMenuForRefresh()
+    dispatch(selectHeader(curHeaderMenu))
+  }
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -54,7 +62,15 @@ function Header() {
     navAni: navAnimation,
     loginInfo,
     onLogout,
-    changeMenu: (menu: string) => dispatch(selectNav(menu))
+    changeHeaderMenu: (menu: string) => dispatch(selectHeader(menu)),
+    selectHeaderMenu,
+    changeMenu: (menu: string) => {
+      dispatch(selectNav(menu))
+    },
+    changeMenuAndHeader: (menu: string, headerMenu: string) => {
+      dispatch(selectNav(menu))
+      dispatch(selectHeader(headerMenu))
+    }
   };
 
   return (

@@ -1,13 +1,14 @@
 import {joinAPI, updatePwd, updateUser} from '@api/user';
-import { RootState } from '@modules/index';
-import { IUserData } from '@pages/mypage/account/Account';
+import {RootState} from '@modules/index';
+import {IUserData} from '@pages/mypage/account/Account';
 import {handleException} from '@utils/errorUtils';
 import {useEffect, useState} from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import UserInfoView from './UserInfoView';
 interface IForm {
   userName: string;
+  username?: string;
   email: string;
   originalPassword: string;
   password: string;
@@ -21,7 +22,7 @@ interface IForm {
 
 interface IUserInfoProps {
   type: string;
-  userinfo?: IUserData
+  userinfo?: IUserData;
 }
 
 function UserInfo({type, userinfo}: IUserInfoProps) {
@@ -33,14 +34,14 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
 
   useEffect(() => {
     if (userinfo?.gender === 'W') {
-      setManClick(false)
-      setWomanClick(true)
+      setManClick(false);
+      setWomanClick(true);
     }
-  }, [userinfo])
+  }, [userinfo]);
 
-  let userOid = ''
+  let userOid = '';
   if (type === 'password') {
-    userOid = useSelector((state:RootState) => state.loginInfo.oid)
+    userOid = useSelector((state: RootState) => state.loginInfo.oid);
   }
 
   const onSubmit = (data: IForm) => {
@@ -52,11 +53,11 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
       // 회원정보 변경
     } else if (type === 'modify') {
       setGender(data);
-      update(data)
+      update(data);
 
       // 비밀번호 변경
     } else {
-      updatePassword(data)
+      updatePassword(data);
     }
   };
 
@@ -73,24 +74,29 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
 
   const update = async (data: IForm) => {
     try {
+      // TODO: 현재 서버와 column명이 맞지 않아서 임시방편으로 소문자처리함, 추후 변경
+      data = {
+        ...data,
+        username: data.userName,
+      };
       const response = await updateUser(data, userinfo?.oid);
-      console.log(response.data)
-      alert('수정 완료')
+      console.log(response.data);
+      alert('수정 완료');
     } catch (err) {
       handleException(err);
     }
-  }
-  
+  };
+
   const updatePassword = async (data: IForm) => {
     try {
       const response = await updatePwd(data, userOid);
       console.log(response.data);
-      alert('변경 완료')
-      navigate('/')
+      alert('변경 완료');
+      navigate('/');
     } catch (err) {
       handleException(err);
     }
-  }
+  };
 
   const setGender = (data: IForm) => {
     if (manClick) {

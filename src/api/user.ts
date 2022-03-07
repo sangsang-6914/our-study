@@ -1,4 +1,4 @@
-import { handleException } from '@utils/errorUtils';
+import {handleException} from '@utils/errorUtils';
 import {apiClient} from './customAxios';
 interface ILoginProps {
   email: string;
@@ -19,7 +19,7 @@ interface IJoinProps {
 }
 
 interface IModifyProps {
-  userName: string;
+  username?: string;
   mobile: string;
   birthdate?: string;
   gender: string;
@@ -44,9 +44,13 @@ const joinAPI = async (payload: IJoinProps) => {
 };
 
 const getUser = async (oid: string) => {
-    const {data: {dataMap: {userinfo}}} = await apiClient.get(`/user/${oid}`);
-    return userinfo
-}
+  const {
+    data: {
+      dataMap: {userinfo},
+    },
+  } = await apiClient.get(`/user/${oid}`);
+  return userinfo;
+};
 
 const updateUser = async (payload: IModifyProps, oid?: string) => {
   return await apiClient.patch(`/user/${oid}`, payload, {

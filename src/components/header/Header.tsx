@@ -7,8 +7,8 @@ import {RootState} from '@modules/index';
 import {logout} from '@modules/loginInfo';
 import {useNavigate} from 'react-router-dom';
 import {apiClient} from '@api/customAxios';
-import { selectHeader, selectNav } from '@modules/selectMenu';
-import { changeHeaderMenuForRefresh } from '@utils/commonUtils';
+import {selectHeader, selectNav} from '@modules/selectMenu';
+import {changeHeaderMenuForRefresh} from '@utils/commonUtils';
 
 function Header() {
   const {i18n} = useTranslation();
@@ -18,11 +18,13 @@ function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const selectHeaderMenu = useSelector((state:RootState) => state.selectMenu.headerMenu)
+  const selectHeaderMenu = useSelector(
+    (state: RootState) => state.selectMenu.headerMenu,
+  );
 
   if (selectHeaderMenu === '') {
-    const curHeaderMenu = changeHeaderMenuForRefresh()
-    dispatch(selectHeader(curHeaderMenu))
+    const curHeaderMenu = changeHeaderMenuForRefresh();
+    dispatch(selectHeader(curHeaderMenu));
   }
 
   useEffect(() => {
@@ -65,12 +67,12 @@ function Header() {
     changeHeaderMenu: (menu: string) => dispatch(selectHeader(menu)),
     selectHeaderMenu,
     changeMenu: (menu: string) => {
-      dispatch(selectNav(menu))
+      dispatch(selectNav(menu));
     },
     changeMenuAndHeader: (menu: string, headerMenu: string) => {
-      dispatch(selectNav(menu))
-      dispatch(selectHeader(headerMenu))
-    }
+      dispatch(selectNav(menu));
+      dispatch(selectHeader(headerMenu));
+    },
   };
 
   return (

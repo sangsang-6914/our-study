@@ -1,15 +1,13 @@
 import {snsRegisterAPI} from '@api/social';
 import {RootState} from '@modules/index';
 import {ComponentWrapper} from '@styles/common.style';
+import {parsingURLCode} from '@utils/commonUtils';
 import {handleException} from '@utils/errorUtils';
-import qs from 'qs';
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 
 function GoogleRegister() {
-  const {code} = qs.parse(location.search, {
-    ignoreQueryPrefix: true,
-  });
+  const {code} = parsingURLCode();
 
   const userOid = useSelector((state: RootState) => state.loginInfo.oid);
 

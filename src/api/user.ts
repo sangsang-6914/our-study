@@ -43,6 +43,12 @@ const joinAPI = async (payload: IJoinProps) => {
   return await apiClient.post(`/join/signUp`, payload);
 };
 
+const logoutAPI = async () => {
+  return await apiClient.get(`/auth/logout`, {
+    withCredentials: true,
+  });
+};
+
 const getUser = async (oid: string) => {
   const {
     data: {
@@ -64,4 +70,4 @@ const updatePwd = async (payload: IChangePwdProps, oid?: string) => {
   });
 };
 
-export {loginAPI, joinAPI, updateUser, updatePwd, getUser};
+export {loginAPI, joinAPI, logoutAPI, updateUser, updatePwd, getUser};

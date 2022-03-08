@@ -1,14 +1,12 @@
 import {snsLoginAPI} from '@api/social';
 import {ComponentWrapper} from '@styles/common.style';
+import {parsingURLCode} from '@utils/commonUtils';
 import {handleException} from '@utils/errorUtils';
-import qs from 'qs';
 import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 function Facebook() {
-  const {code} = qs.parse(location.search, {
-    ignoreQueryPrefix: true,
-  });
+  const {code} = parsingURLCode();
   const navigate = useNavigate();
 
   useEffect(() => {

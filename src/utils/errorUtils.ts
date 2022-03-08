@@ -6,14 +6,14 @@ interface IError {
 }
 
 export const handleException = (error: any) => {
-  console.log(error.response);
+  console.log(error);
 
   if (error.response) {
     const data: IError = error.response.data;
     if (data.statusCode === 404) {
       alert('요청하려는 URL을 찾을 수 없습니다.');
     } else if (data.statusCode === 403) {
-      alert('403')
+      alert('403');
     } else {
       alert(data.errorMessage);
     }

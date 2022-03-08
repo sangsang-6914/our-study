@@ -1,14 +1,12 @@
 import {ComponentWrapper} from '@styles/common.style';
 import {snsLoginAPI} from '@api/social';
-import qs from 'qs';
 import {useEffect} from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 import {handleException} from '@utils/errorUtils';
+import {parsingURLCode} from '@utils/commonUtils';
 
 function GitHub() {
-  const {code} = qs.parse(location.search, {
-    ignoreQueryPrefix: true,
-  });
+  const {code} = parsingURLCode();
   const navigate = useNavigate();
 
   useEffect(() => {

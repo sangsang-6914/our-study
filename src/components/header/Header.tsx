@@ -9,6 +9,8 @@ import {useNavigate} from 'react-router-dom';
 import {apiClient} from '@api/customAxios';
 import {selectHeader, selectNav} from '@modules/selectMenu';
 import {changeHeaderMenuForRefresh} from '@utils/commonUtils';
+import {logoutAPI} from '@api/user';
+import {handleException} from '@utils/errorUtils';
 
 function Header() {
   const {i18n} = useTranslation();
@@ -48,15 +50,21 @@ function Header() {
     i18n.changeLanguage(changeLang);
   };
 
-  const onLogout = () => {
-    // 로그아웃 후처리
-    localStorage.removeItem('loginInfo');
-    apiClient.defaults.headers.common['x-access-token'] = '';
-    dispatch(logout());
+  const onLogout = async () => {
+    try {
+      const response = await logoutAPI();
+      console.log(response);
+      // 로그아웃 후처리
+      localStorage.removeItem('loginInfo');
+      apiClient.defaults.headers.common['x-access-token'] = '';
+      dispatch(logout());
 
-    alert('로그아웃 성공');
+      alert('로그아웃 성공');
 
-    navigate('/');
+      navigate('/');
+    } catch (err) {
+      handleException(err);
+    }
   };
 
   const props = {

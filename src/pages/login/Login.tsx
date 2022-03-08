@@ -28,11 +28,9 @@ function Login({onClose}: ILoginProps) {
   const onSubmit = async (data: ILoginForm) => {
     try {
       const response = await loginAPI(data);
-      const responseData = response.data;
-      const accessToken = responseData.dataMap.accessToken;
+      const accessToken = response.data.dataMap.accessToken;
       apiClient.defaults.headers.common['x-access-token'] = accessToken;
       // 로그인정보 저장 (redux)
-      // accesstoken save => localStorage vs Cookie ?
       const tokenPayload = accessToken.split('.')[1];
       const tokenObj = JWTParseToObject(tokenPayload);
       const loginInfo: LoginInfoState = {

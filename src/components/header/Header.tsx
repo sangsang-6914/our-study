@@ -11,6 +11,7 @@ import {selectHeader, selectNav} from '@modules/selectMenu';
 import {changeHeaderMenuForRefresh} from '@utils/commonUtils';
 import {logoutAPI} from '@api/user';
 import {handleException} from '@utils/errorUtils';
+import {useQueryClient} from 'react-query';
 
 function Header() {
   const {i18n} = useTranslation();
@@ -53,11 +54,14 @@ function Header() {
   const onLogout = async () => {
     try {
       const response = await logoutAPI();
-      console.log(response);
+
       // 로그아웃 후처리
       localStorage.removeItem('loginInfo');
       apiClient.defaults.headers.common['x-access-token'] = '';
       dispatch(logout());
+
+      // const queryClient = useQueryClient();
+      // queryClient.removeQueries('userData');
 
       alert('로그아웃 성공');
 

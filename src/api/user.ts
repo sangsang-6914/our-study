@@ -8,7 +8,7 @@ interface ILoginProps {
 interface IJoinProps {
   email: string;
   password: string;
-  userName: string;
+  username: string;
   mobile: string;
   birthdate?: string;
   gender: string;

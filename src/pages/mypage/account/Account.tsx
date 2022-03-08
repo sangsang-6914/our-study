@@ -1,12 +1,12 @@
-import { getUser } from "@api/user"
-import UserInfo from "@components/user/UserInfo"
-import { RootState } from "@modules/index"
-import { handleException } from "@utils/errorUtils"
-import { useEffect } from "react"
-import { useQuery } from "react-query"
-import { useSelector } from "react-redux"
+import {getUser} from '@api/user';
+import UserInfo from '@components/user/UserInfo';
+import {RootState} from '@modules/index';
+import {handleException} from '@utils/errorUtils';
+import {useEffect} from 'react';
+import {useQuery} from 'react-query';
+import {useSelector} from 'react-redux';
 
-export interface IUserData  {
+export interface IUserData {
   email: string;
   password: string;
   username: string;
@@ -20,23 +20,26 @@ export interface IUserData  {
   oid: string;
 }
 
-function Account () {
-  const userOid = useSelector((state:RootState) => state.loginInfo.oid)
-  const {data, isLoading} = useQuery<IUserData, Error>("userData", () => getUser(userOid), {
-    retry: false,
-    onError: (error) => handleException(error),
-    refetchOnWindowFocus: false
-  })
-  
+function Account() {
+  const userOid = useSelector((state: RootState) => state.loginInfo.oid);
+  console.log(userOid);
+  const {data, isLoading} = useQuery<IUserData, Error>(
+    'userData',
+    () => getUser(userOid),
+    {
+      retry: false,
+      onError: (error) => handleException(error),
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  console.log(data);
+
   return (
     <>
-      {
-        isLoading ? 'loading....' : (
-          <UserInfo type='modify' userinfo={data} />
-        )
-      }
+      {isLoading ? 'loading....' : <UserInfo type="modify" userinfo={data} />}
     </>
-  )
+  );
 }
 
-export default Account
+export default Account;

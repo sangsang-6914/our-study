@@ -7,8 +7,7 @@ import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import UserInfoView from './UserInfoView';
 interface IForm {
-  userName: string;
-  username?: string;
+  username: string;
   email: string;
   originalPassword: string;
   password: string;
@@ -77,7 +76,6 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
       // TODO: 현재 서버와 column명이 맞지 않아서 임시방편으로 소문자처리함, 추후 변경
       data = {
         ...data,
-        username: data.userName,
       };
       const response = await updateUser(data, userinfo?.oid);
       console.log(response.data);

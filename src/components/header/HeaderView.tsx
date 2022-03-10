@@ -116,14 +116,14 @@ function HeaderView({
                 {t('header.item.study.title')}
               </Item>
               <StudyDropdownContent>
-                <DropdownMenu>
-                  <Link
-                    to="/study/developer/study"
-                    onClick={() => changeMenuAndHeader('study', 'study')}
-                  >
+                <Link
+                  to="/study/developer/study"
+                  onClick={() => changeMenuAndHeader('study', 'study')}
+                >
+                  <DropdownMenu>
                     {t('header.item.study.sub.developer')}
-                  </Link>
-                </DropdownMenu>
+                  </DropdownMenu>
+                </Link>
                 <DropdownMenu>{t('header.item.study.sub.design')}</DropdownMenu>
                 <DropdownMenu>
                   {t('header.item.study.sub.security')}

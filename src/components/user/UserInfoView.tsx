@@ -10,6 +10,7 @@ import {
   SubTitle,
   Title,
 } from '@styles/join.style';
+import {useEffect} from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
@@ -62,19 +63,17 @@ function UserInfoView({
     setValue,
   } = useForm({
     mode: 'onChange',
-    defaultValues: {
-      originalPassword: '',
-      password: '',
-      passwordCheck: '',
-      username: userinfo?.username,
-      email: userinfo?.email,
-      address: userinfo?.address,
-      addressDetail: userinfo?.addressDetail,
-      postNum: userinfo?.postNum,
-      mobile: userinfo?.mobile,
-    },
   });
-  console.log(userinfo);
+
+  useEffect(() => {
+    setValue('username', userinfo?.username);
+    setValue('email', userinfo?.email);
+    setValue('address', userinfo?.address);
+    setValue('addressDetail', userinfo?.addressDetail);
+    setValue('postNum', userinfo?.postNum);
+    setValue('mobile', userinfo?.mobile);
+  }, [userinfo]);
+
   const {t} = useTranslation();
 
   const onCompletePost = (data: IPostData) => {

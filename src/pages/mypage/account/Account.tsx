@@ -22,7 +22,7 @@ export interface IUserData {
 
 function Account() {
   const userOid = useSelector((state: RootState) => state.loginInfo.oid);
-  console.log(userOid);
+
   const {data, isLoading} = useQuery<IUserData, Error>(
     'userData',
     () => getUser(userOid),
@@ -32,8 +32,6 @@ function Account() {
       refetchOnWindowFocus: false,
     },
   );
-
-  console.log(data);
 
   return (
     <>

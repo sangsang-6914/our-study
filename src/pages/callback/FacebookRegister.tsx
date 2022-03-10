@@ -5,10 +5,12 @@ import {parsingURLCode} from '@utils/commonUtils';
 import {handleException} from '@utils/errorUtils';
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
 function FacebookRegister() {
   const {code} = parsingURLCode();
   const userOid = useSelector((state: RootState) => state.loginInfo.oid);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const snsRegister = async () => {
@@ -18,13 +20,18 @@ function FacebookRegister() {
           'facebook',
           userOid,
         );
-        console.log(response.data);
+        if (response.data?.dataMap?.accessToken) {
+          navigate('/');
+        } else {
+          alert('등록 실패');
+          navigate('/');
+        }
       } catch (err) {
         handleException(err);
       }
     };
     snsRegister();
-  }, [code]);
+  }, [code, userOid]);
 
   return <ComponentWrapper>{code}</ComponentWrapper>;
 }

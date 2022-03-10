@@ -14,7 +14,6 @@ import {useEffect} from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
-import {$CombinedState} from 'redux';
 
 interface IJoinViewProps {
   onSubmit: (data: any) => void;
@@ -65,13 +64,17 @@ function UserInfoView({
     mode: 'onChange',
   });
 
-  useEffect(() => {
+  const setUserData = () => {
     setValue('username', userinfo?.username);
     setValue('email', userinfo?.email);
     setValue('address', userinfo?.address);
     setValue('addressDetail', userinfo?.addressDetail);
     setValue('postNum', userinfo?.postNum);
     setValue('mobile', userinfo?.mobile);
+  };
+
+  useEffect(() => {
+    setUserData();
   }, [userinfo]);
 
   const {t} = useTranslation();

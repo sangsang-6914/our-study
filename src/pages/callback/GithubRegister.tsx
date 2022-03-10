@@ -5,22 +5,29 @@ import {parsingURLCode} from '@utils/commonUtils';
 import {handleException} from '@utils/errorUtils';
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
 function GithubRegister() {
   const {code} = parsingURLCode();
   const userOid = useSelector((state: RootState) => state.loginInfo.oid);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const snsRegister = async () => {
       try {
         const response = await snsRegisterAPI(String(code), 'github', userOid);
-        console.log(response.data);
+        if (response.data?.dataMap?.accessToken) {
+          navigate('/');
+        } else {
+          alert('등록 실패');
+          navigate('/');
+        }
       } catch (err) {
         handleException(err);
       }
     };
     snsRegister();
-  }, [code]);
+  }, [code, userOid]);
   return <ComponentWrapper>{code}</ComponentWrapper>;
 }
 

@@ -16,6 +16,7 @@ import Footer from '@components/footer/Footer';
 import {Wrapper} from '@styles/router.style';
 
 function RouterPage() {
+  console.log('router page');
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Wrapper>

@@ -73,13 +73,10 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
 
   const update = async (data: IForm) => {
     try {
-      // TODO: 현재 서버와 column명이 맞지 않아서 임시방편으로 소문자처리함, 추후 변경
-      data = {
-        ...data,
-      };
       const response = await updateUser(data, userinfo?.oid);
-      console.log(response.data);
-      alert('수정 완료');
+      if (response) {
+        alert('수정 완료');
+      }
     } catch (err) {
       handleException(err);
     }
@@ -87,10 +84,15 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
 
   const updatePassword = async (data: IForm) => {
     try {
-      const response = await updatePwd(data, userOid);
-      console.log(response.data);
-      alert('변경 완료');
-      navigate('/');
+      const payload = {
+        oid: userOid,
+        ...data,
+      };
+      const response = await updatePwd(payload);
+      if (response) {
+        alert('변경 완료');
+        navigate('/');
+      }
     } catch (err) {
       handleException(err);
     }

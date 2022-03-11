@@ -27,7 +27,7 @@ function KakaoRegister() {
       }
     };
     snsRegister();
-  }, []);
+  }, [userOid]);
   return <ComponentWrapper></ComponentWrapper>;
 }
 

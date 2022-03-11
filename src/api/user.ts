@@ -31,6 +31,7 @@ interface IModifyProps {
 interface IChangePwdProps {
   originalPassword: string;
   password: string;
+  oid: string;
 }
 
 const loginAPI = async (payload: ILoginProps) => {
@@ -59,13 +60,13 @@ const getUser = async (oid: string) => {
 };
 
 const updateUser = async (payload: IModifyProps, oid?: string) => {
-  return await apiClient.patch(`/user/${oid}`, payload, {
+  return await apiClient.put(`/user/${oid}`, payload, {
     withCredentials: true,
   });
 };
 
-const updatePwd = async (payload: IChangePwdProps, oid?: string) => {
-  return await apiClient.patch(`/user/change/password/${oid}`, payload, {
+const updatePwd = async (payload: IChangePwdProps) => {
+  return await apiClient.post(`/user`, payload, {
     withCredentials: true,
   });
 };

@@ -29,7 +29,9 @@ function App() {
         console.log('init data after!!!');
         setIsRender(true);
       }
-    } catch (err) {
+    } catch (err: any) {
+      // 로그인 안됐을 시 에러 처리.. (not login code)
+      setIsRender(true);
       handleException(err);
     }
   };

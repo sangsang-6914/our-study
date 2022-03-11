@@ -8,9 +8,9 @@ import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
 function KakaoRegister() {
+  const navigate = useNavigate();
   const {code} = parsingURLCode();
   const userOid = useSelector((state: RootState) => state.loginInfo.oid);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const snsRegister = async () => {
@@ -27,7 +27,7 @@ function KakaoRegister() {
       }
     };
     snsRegister();
-  }, [code, userOid]);
+  }, []);
   return <ComponentWrapper></ComponentWrapper>;
 }
 

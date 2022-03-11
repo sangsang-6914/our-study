@@ -27,6 +27,13 @@ const Logo = styled.div`
   margin-right: 50px;
   font-style: italic;
   padding: 20px 0px;
+  text-shadow: 1.5px 1.5px 1.5px #c1c1c1;
+  &:active {
+    text-shadow: 1.55px 1.55px 1.55px #383838;
+  }
+  &:hover {
+    color: ${(props) => props.theme.mint.deepDarker};
+  }
 `;
 
 const Items = styled.ul`
@@ -76,11 +83,15 @@ const ProfileDropdownContent = styled(AbstractDropdownContent)`
   height: 200px;
 `;
 
-const Item = styled.li<{type?: string, curLink?: string, selectLink?: string}>`
+const Item = styled.li<{type?: string; curLink?: string; selectLink?: string}>`
   margin-right: 40px;
   padding: 10px 0px;
-  color: ${props => props.curLink === props.selectLink ? props.theme.mint.deepDarker : props.theme.fontColor.subTitle };
-  font-weight: ${props => props.curLink === props.selectLink ? 'bold' : 'normal' };
+  color: ${(props) =>
+    props.curLink === props.selectLink
+      ? props.theme.mint.deepDarker
+      : props.theme.fontColor.subTitle};
+  font-weight: ${(props) =>
+    props.curLink === props.selectLink ? 'bold' : 'normal'};
   cursor: pointer;
   &:hover {
     color: ${(props) => props.theme.mint.deepDarker};

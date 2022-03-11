@@ -11,8 +11,6 @@ import {RootState} from './modules/index';
 import RouterFactory from '@pages/RouterFactory';
 
 function App() {
-  const userInfo = useSelector((state: RootState) => state.loginInfo.isLogined);
-  console.log(userInfo);
   const {t} = useTranslation();
   const dispatch = useDispatch();
 

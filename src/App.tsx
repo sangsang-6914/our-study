@@ -1,81 +1,47 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
-import Home from '@pages/home/Home';
-import Join from '@pages/join/Join';
-import DeveloperInfo from '@pages/developer/DeveloperInfo';
-import Header from '@components/header/Header';
 import {useTranslation} from 'react-i18next';
-import Footer from '@components/footer/Footer';
 import styled from 'styled-components';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {login} from '@modules/loginInfo';
-import Kakao from '@pages/callback/Kakao';
-import GitHub from '@pages/callback/GitHub';
-import Facebook from '@pages/callback/Facebook';
-import Google from '@pages/callback/Google';
-import MyPage from '@pages/mypage/MyPage';
-import KakaoRegister from '@pages/callback/KakaoRegister';
-import GithubRegister from '@pages/callback/GithubRegister';
-import FacebookRegister from '@pages/callback/FacebookRegister';
-import GoogleRegister from '@pages/callback/GoogleRegister';
-import Developer from '@pages/study/developer/Developer';
-
-const Wrapper = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
+import {useEffect} from 'react';
+import {isLogin} from '@api/user';
+import {handleException} from '@utils/errorUtils';
+import {getLoginInfo} from '@utils/LoginUtils';
+import {RootState} from './modules/index';
+import RouterFactory from '@pages/RouterFactory';
 
 function App() {
+  const userInfo = useSelector((state: RootState) => state.loginInfo.isLogined);
+  console.log(userInfo);
   const {t} = useTranslation();
-  // 로그인상태 검증
-  // TODO: 서버에서 sid처리가 끝나면 cookie에서 가져와서 처리하도록 변경
-  const loginInfo = localStorage.getItem('loginInfo');
-  if (loginInfo !== null) {
-    const realData = JSON.parse(loginInfo);
-    const dispatch = useDispatch();
-    dispatch(login(realData));
-  }
+  const dispatch = useDispatch();
+
+  // 새로고침 시 로그인상태(토큰) 검증
+  useEffect(() => {
+    isLoginAPI();
+  }, []);
+
+  const isLoginAPI = async () => {
+    try {
+      const response = await isLogin();
+      // 로그인 후에만 아래 로직 처리
+      if (response?.accessToken) {
+        const accessToken = response.accessToken;
+        const loginInfo = getLoginInfo(accessToken);
+
+        dispatch(login(loginInfo));
+      }
+    } catch (err) {
+      handleException(err);
+    }
+  };
+
   return (
     <>
       <Helmet>
         <title>{t('title')}</title>
       </Helmet>
-      <Router basename={process.env.PUBLIC_URL}>
-        <Wrapper>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/developer" element={<DeveloperInfo />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/mypage/*" element={<MyPage />} />
-            {/* Study */}
-            <Route path="/study/developer/*" element={<Developer />} />
-            {/* SNS 관련 page */}
-            <Route path="/oauth/callback/kakao" element={<Kakao />} />
-            <Route path="/oauth/callback/github" element={<GitHub />} />
-            <Route path="/oauth/callback/facebook" element={<Facebook />} />
-            <Route path="/oauth/callback/google" element={<Google />} />
-            <Route
-              path="/oauth/callback/register/kakao"
-              element={<KakaoRegister />}
-            />
-            <Route
-              path="/oauth/callback/register/github"
-              element={<GithubRegister />}
-            />
-            <Route
-              path="/oauth/callback/register/facebook"
-              element={<FacebookRegister />}
-            />
-            <Route
-              path="/oauth/callback/register/google"
-              element={<GoogleRegister />}
-            />
-          </Routes>
-          <Footer />
-        </Wrapper>
-      </Router>
+      <RouterFactory />
     </>
   );
 }

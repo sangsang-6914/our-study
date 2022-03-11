@@ -4,8 +4,7 @@ import {login, LoginInfoState} from '@modules/loginInfo';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import LoginView from './LoginView';
-import {JWTParseToObject} from '@utils/JWTUtils';
-import {apiClient} from '@api/customAxios';
+import {getLoginInfo} from '@utils/LoginUtils';
 import {handleException} from '@utils/errorUtils';
 
 interface ILoginProps {
@@ -29,21 +28,7 @@ function Login({onClose}: ILoginProps) {
     try {
       const response = await loginAPI(data);
       const accessToken = response.data.dataMap.accessToken;
-      apiClient.defaults.headers.common['x-access-token'] = accessToken;
-      // 로그인정보 저장 (redux)
-      const tokenPayload = accessToken.split('.')[1];
-      const tokenObj = JWTParseToObject(tokenPayload);
-      const loginInfo: LoginInfoState = {
-        oid: tokenObj.userinfo.oid,
-        email: tokenObj.userinfo.email,
-        name: tokenObj.userinfo.username,
-        mobile: tokenObj.userinfo.mobile,
-        isLogined: true,
-        a_c_t: accessToken,
-      };
-
-      // TODO: 서버에서 sid처리가 끝나면 cookie에서 가져와서 처리하도록 변경
-      localStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+      const loginInfo: LoginInfoState = getLoginInfo(accessToken);
 
       dispatch(login(loginInfo));
 

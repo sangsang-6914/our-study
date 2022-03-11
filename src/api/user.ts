@@ -70,4 +70,13 @@ const updatePwd = async (payload: IChangePwdProps, oid?: string) => {
   });
 };
 
-export {loginAPI, joinAPI, logoutAPI, updateUser, updatePwd, getUser};
+const isLogin = async () => {
+  const {
+    data: {dataMap},
+  } = await apiClient.get(`/auth/`, {
+    withCredentials: true,
+  });
+  return dataMap;
+};
+
+export {loginAPI, joinAPI, logoutAPI, updateUser, updatePwd, getUser, isLogin};

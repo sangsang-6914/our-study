@@ -6,8 +6,6 @@ interface IError {
 }
 
 export const handleException = (error: any) => {
-  console.log(error);
-
   if (error.response) {
     const data: IError = error.response.data;
     if (data.statusCode === 404) {

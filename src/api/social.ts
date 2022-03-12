@@ -27,7 +27,6 @@ const facebookRegisterLogin = `https://www.facebook.com/v2.11/dialog/oauth?clien
 const googleRegisterLogin = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REGISTER_REDIRECT_URI}&scope=openid+email+profile&response_type=code`;
 
 const snsRegisterAPI = async (code: string, site: string, userOid: string) => {
-  console.log(userOid);
   return await apiClient.get(`/sns/register/${site}/${userOid}`, {
     params: {
       code,

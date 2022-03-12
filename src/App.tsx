@@ -26,7 +26,6 @@ function App() {
 
         dispatch(login(loginInfo));
         await setInitData();
-        console.log('init data after!!!');
         setIsRender(true);
       }
     } catch (err: any) {
@@ -36,17 +35,15 @@ function App() {
     }
   };
 
+  // 앱 처음 렌더링 시 초기데이터 생성
   const setInitData = async () => {
     const response = await isLogin();
     console.log(response);
-    console.log('initdata!!');
   };
 
   useEffect(() => {
     isLoginAPI();
   }, []);
-
-  console.log(isRender);
 
   return (
     <>

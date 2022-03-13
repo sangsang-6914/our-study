@@ -53,18 +53,13 @@ function Header() {
 
   const onLogout = async () => {
     try {
-      const response = await logoutAPI();
+      await logoutAPI();
 
-      // 로그아웃 후처리
-      localStorage.removeItem('loginInfo');
+      // 로그아웃 후처리 (header accesstoken 삭제, store 초기화)
       apiClient.defaults.headers.common['x-access-token'] = '';
       dispatch(logout());
 
-      // const queryClient = useQueryClient();
-      // queryClient.removeQueries('userData');
-
       alert('로그아웃 성공');
-
       navigate('/');
     } catch (err) {
       handleException(err);

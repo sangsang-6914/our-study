@@ -10,7 +10,8 @@
       "@styles/*": ["./styles/*"],
       "@api/*": ["./api/*"],
       "@assets": ["./assets/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"]
     }
   }
 }

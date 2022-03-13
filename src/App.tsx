@@ -1,14 +1,13 @@
 import {Helmet} from 'react-helmet';
 import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from '@modules/loginInfo';
+import {login, logout} from '@modules/loginInfo';
 import {useEffect, useState} from 'react';
 import {isLogin} from '@api/user';
-import {handleException} from '@utils/errorUtils';
+import {loginHandleException} from '@utils/errorUtils';
 import {getLoginInfo} from '@utils/LoginUtils';
-import {RootState} from './modules/index';
 import RouterFactory from '@pages/RouterFactory';
-import {useQuery} from 'react-query';
+import { apiClient } from '@api/customAxios';
 
 function App() {
   const {t} = useTranslation();
@@ -18,27 +17,37 @@ function App() {
   // 새로고침 시 로그인상태(토큰) 검증
   const isLoginAPI = async () => {
     try {
+      await setInitData();
       const response = await isLogin();
       // 로그인 후에만 아래 로직 처리
       if (response?.accessToken) {
         const accessToken = response.accessToken;
         const loginInfo = getLoginInfo(accessToken);
-
         dispatch(login(loginInfo));
-        await setInitData();
-        setIsRender(true);
       }
     } catch (err: any) {
-      // 로그인 안됐을 시 에러 처리.. (not login code)
-      setIsRender(true);
-      handleException(err);
+      // 로그인 안됐을 시 에러 처리..
+      // 애초에 로그인 상태가 아닌경우, 토큰이 만료된 경우 코드로 나뉘어야 할듯
+      const errorCode = loginHandleException(err)
+      if (errorCode === 'expired.token') {
+        alert('로그인 유효시간이 지났습니다. 다시 로그인 해주세요.')
+        
+        apiClient.defaults.headers.common['x-access-token'] = '';
+        dispatch(logout())
+      } else if (errorCode === 'not.login') {
+        // 애초에 로그인 상태가 아니기 때문에 그냥 렌더링 처리
+      } else {
+        alert(errorCode)
+      }
+
+    } finally {
+      setIsRender(true)
     }
   };
 
   // 앱 처음 렌더링 시 초기데이터 생성
   const setInitData = async () => {
-    const response = await isLogin();
-    console.log(response);
+    // 정책데이터 set
   };
 
   useEffect(() => {

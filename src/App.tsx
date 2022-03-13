@@ -20,12 +20,14 @@ function App() {
       await setInitData();
       const response = await isLogin();
       // 로그인 후에만 아래 로직 처리
+      console.log(response)
       if (response?.accessToken) {
         const accessToken = response.accessToken;
         const loginInfo = getLoginInfo(accessToken);
         dispatch(login(loginInfo));
       }
     } catch (err: any) {
+      console.log(err)
       const errorCode = loginHandleException(err)
       // 토큰 만료 시 
       if (errorCode === 'expired.token') {

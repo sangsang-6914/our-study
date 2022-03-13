@@ -15,6 +15,7 @@ import GoogleRegister from '@pages/callback/GoogleRegister';
 import Footer from '@components/footer/Footer';
 import {Wrapper} from '@styles/router.style';
 import RequireAuth from './auth/RequireAuth';
+import RequireNoAuth from './auth/RequireNoAuth';
 
 function RouterPage() {
   return (
@@ -24,7 +25,7 @@ function RouterPage() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/developer" element={<DeveloperInfo />} />
-          <Route path="/join" element={<Join />} />
+          <Route path="/join" element={<RequireNoAuth><Join /></RequireNoAuth>} />
           <Route path="/mypage/*" element={<RequireAuth><MyPage /></RequireAuth>} />
           {/* Study */}
           <Route path="/study/developer/*" element={<Developer />} />

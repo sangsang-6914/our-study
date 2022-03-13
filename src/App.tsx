@@ -26,16 +26,17 @@ function App() {
         dispatch(login(loginInfo));
       }
     } catch (err: any) {
-      // 로그인 안됐을 시 에러 처리..
-      // 애초에 로그인 상태가 아닌경우, 토큰이 만료된 경우 코드로 나뉘어야 할듯
       const errorCode = loginHandleException(err)
+      // 토큰 만료 시 
       if (errorCode === 'expired.token') {
         alert('로그인 유효시간이 지났습니다. 다시 로그인 해주세요.')
-        
+
         apiClient.defaults.headers.common['x-access-token'] = '';
         dispatch(logout())
+
+      // 로그인 상태가 아닐 시
       } else if (errorCode === 'not.login') {
-        // 애초에 로그인 상태가 아니기 때문에 그냥 렌더링 처리
+
       } else {
         alert(errorCode)
       }

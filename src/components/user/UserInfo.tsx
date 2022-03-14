@@ -63,7 +63,6 @@ function UserInfo({type, userinfo}: IUserInfoProps) {
   const join = async (data: IForm) => {
     try {
       const response = await joinAPI(data);
-      console.log(response);
       alert('회원가입 완료');
       navigate('/');
     } catch (err) {

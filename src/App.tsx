@@ -7,7 +7,8 @@ import {isLogin} from '@api/user';
 import {loginHandleException} from '@utils/errorUtils';
 import {getLoginInfo} from '@utils/LoginUtils';
 import RouterFactory from '@pages/RouterFactory';
-import { apiClient } from '@api/customAxios';
+import {apiClient} from '@api/customAxios';
+import useLogout from '@hooks/useLogout';
 
 function App() {
   const {t} = useTranslation();
@@ -20,31 +21,25 @@ function App() {
       await setInitData();
       const response = await isLogin();
       // 로그인 후에만 아래 로직 처리
-      console.log(response)
-      if (response?.accessToken) {
+      if (!!response?.accessToken) {
         const accessToken = response.accessToken;
         const loginInfo = getLoginInfo(accessToken);
         dispatch(login(loginInfo));
       }
     } catch (err: any) {
-      console.log(err)
-      const errorCode = loginHandleException(err)
-      // 토큰 만료 시 
+      const errorCode = loginHandleException(err);
+      // 토큰 만료 시
       if (errorCode === 'expired.token') {
-        alert('로그인 유효시간이 지났습니다. 다시 로그인 해주세요.')
+        alert('로그인 유효시간이 지났습니다. 다시 로그인 해주세요.');
+        useLogout();
 
-        apiClient.defaults.headers.common['x-access-token'] = '';
-        dispatch(logout())
-
-      // 로그인 상태가 아닐 시
+        // 로그인 상태가 아닐 시
       } else if (errorCode === 'not.login') {
-
       } else {
-        alert(errorCode)
+        alert(errorCode);
       }
-
     } finally {
-      setIsRender(true)
+      setIsRender(true);
     }
   };
 

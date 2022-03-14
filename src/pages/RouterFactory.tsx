@@ -25,8 +25,22 @@ function RouterPage() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/developer" element={<DeveloperInfo />} />
-          <Route path="/join" element={<RequireNoAuth><Join /></RequireNoAuth>} />
-          <Route path="/mypage/*" element={<RequireAuth><MyPage /></RequireAuth>} />
+          <Route
+            path="/join"
+            element={
+              <RequireNoAuth>
+                <Join />
+              </RequireNoAuth>
+            }
+          />
+          <Route
+            path="/mypage/*"
+            element={
+              <RequireAuth>
+                <MyPage />
+              </RequireAuth>
+            }
+          />
           {/* Study */}
           <Route path="/study/developer/*" element={<Developer />} />
           {/* SNS 관련 page */}

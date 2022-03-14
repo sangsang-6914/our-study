@@ -1,21 +1,20 @@
-import { isLogin } from "@api/user"
-import { handleException } from "@utils/errorUtils"
-import { useState } from "react"
+import {isLogin} from '@api/user';
+import {handleException} from '@utils/errorUtils';
+import {useState} from 'react';
 
 const useLoginCheck = async () => {
-  let auth = false
+  let auth = false;
   try {
-    const response = await isLogin()
-    console.log(response)
+    const response = await isLogin();
+    console.log(response);
     if (response?.accessToken) {
-      console.log(response.accessToken)
-      auth = true
+      auth = true;
     }
   } catch (err) {
-    handleException(err)
+    handleException(err);
   } finally {
-    return auth
+    return auth;
   }
-}
+};
 
-export default useLoginCheck
+export default useLoginCheck;

@@ -11,8 +11,6 @@ import {selectHeader, selectNav} from '@modules/selectMenu';
 import {changeHeaderMenuForRefresh} from '@utils/commonUtils';
 import {logoutAPI} from '@api/user';
 import {handleException} from '@utils/errorUtils';
-import {useQueryClient} from 'react-query';
-import useLogout from '@hooks/useLogout';
 
 function Header() {
   const {i18n} = useTranslation();
@@ -59,7 +57,6 @@ function Header() {
       // 로그아웃 후처리 (header accesstoken 삭제, store 초기화)
       apiClient.defaults.headers.common['x-access-token'] = '';
       dispatch(logout());
-      // useLogout();
 
       alert('로그아웃 성공');
       navigate('/');

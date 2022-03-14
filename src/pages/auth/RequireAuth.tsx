@@ -1,6 +1,5 @@
 import {apiClient} from '@api/customAxios';
 import {isLogin} from '@api/user';
-import useLogout from '@hooks/useLogout';
 import {RootState} from '@modules/index';
 import {logout} from '@modules/loginInfo';
 import {ComponentWrapper} from '@styles/common.style';
@@ -18,6 +17,7 @@ function RequireAuth({children}: any) {
   const {data, error, isLoading} = useAsync({
     promiseFn: isLogin,
   });
+  const dispatch = useDispatch();
 
   if (isLoading) return <ComponentWrapper>API loading....</ComponentWrapper>;
 
@@ -25,8 +25,10 @@ function RequireAuth({children}: any) {
     // 로그인 토큰 만료
     if (!!error) {
       const errorCode = loginHandleException(error);
-      if (errorCode === 'expired.token') {
-        useLogout();
+      if (errorCode === 'token.expired') {
+        apiClient.defaults.headers.common['x-access-token'] = '';
+        dispatch(logout());
+        alert('로그인 유효시간이 지났습니다. 다시 로그인해 주세요.');
       }
       return <Navigate to="/" replace />;
 

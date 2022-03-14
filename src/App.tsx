@@ -8,7 +8,6 @@ import {loginHandleException} from '@utils/errorUtils';
 import {getLoginInfo} from '@utils/LoginUtils';
 import RouterFactory from '@pages/RouterFactory';
 import {apiClient} from '@api/customAxios';
-import useLogout from '@hooks/useLogout';
 
 function App() {
   const {t} = useTranslation();
@@ -28,15 +27,14 @@ function App() {
       }
     } catch (err: any) {
       const errorCode = loginHandleException(err);
-      // 토큰 만료 시
-      if (errorCode === 'expired.token') {
+      if (errorCode === 'token.expired') {
+        apiClient.defaults.headers.common['x-access-token'] = '';
+        dispatch(logout());
         alert('로그인 유효시간이 지났습니다. 다시 로그인 해주세요.');
-        useLogout();
-
-        // 로그인 상태가 아닐 시
       } else if (errorCode === 'not.login') {
+        setIsRender(true);
       } else {
-        alert(errorCode);
+        console.error(errorCode);
       }
     } finally {
       setIsRender(true);
@@ -57,7 +55,7 @@ function App() {
       <Helmet>
         <title>{t('title')}</title>
       </Helmet>
-      {!isRender ? 'loading...' : <RouterFactory />}
+      {!isRender ? '' : <RouterFactory />}
     </>
   );
 }

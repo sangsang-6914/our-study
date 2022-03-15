@@ -30,7 +30,7 @@ function App() {
       if (errorCode === 'token.expired') {
         apiClient.defaults.headers.common['x-access-token'] = '';
         dispatch(logout());
-        alert('로그인 유효시간이 지났습니다. 다시 로그인 해주세요.');
+        alert(t('alert.tokenExpired'));
       } else if (errorCode === 'not.login') {
         setIsRender(true);
       } else {

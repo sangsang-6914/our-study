@@ -4,43 +4,61 @@ import {RootState} from '@modules/index';
 import {logout} from '@modules/loginInfo';
 import {ComponentWrapper} from '@styles/common.style';
 import {loginHandleException} from '@utils/errorUtils';
-import {useAsync} from 'react-async';
+import {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 import {Navigate} from 'react-router-dom';
 
 function RequireAuth({children}: any) {
-  // 1. store의 isLogined 검증
-  // 2. isLogined true 일때 서버로 토큰 유효성 검증
+  // 1. 로그인 상태 확인
+  // 2. 로그인 상태 일때 토큰 유효성 검증
+  const [isRender, setIsRender] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
   const isLogined = useSelector(
     (state: RootState) => state.loginInfo.isLogined,
   );
-  const {data, error, isLoading} = useAsync({
-    promiseFn: isLogin,
-  });
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
-  if (isLoading) return <ComponentWrapper>API loading....</ComponentWrapper>;
-
-  if (isLogined) {
-    // 로그인 토큰 만료
-    if (!!error) {
-      const errorCode = loginHandleException(error);
+  const isLoginAPI = async () => {
+    try {
+      const response = await isLogin();
+      if (!!response?.accessToken) {
+        setIsAuth(true);
+      }
+    } catch (err) {
+      const errorCode = loginHandleException(err);
       if (errorCode === 'token.expired') {
         apiClient.defaults.headers.common['x-access-token'] = '';
         dispatch(logout());
-        alert('로그인 유효시간이 지났습니다. 다시 로그인해 주세요.');
+        alert(t('alert.tokenExpired'));
       }
-      return <Navigate to="/" replace />;
-
-      // 로그인 상태
-    } else if (!!data?.accessToken) {
-      return children;
-    } else {
-      return children;
+    } finally {
+      setIsRender(true);
     }
-  } else {
+  };
+
+  useEffect(() => {
+    isLoginAPI();
+  }, []);
+
+  const redirectHome = () => {
     return <Navigate to="/" replace />;
-  }
+  };
+
+  return (
+    <>
+      {!isLogined ? (
+        redirectHome()
+      ) : !isRender ? (
+        <ComponentWrapper>loading...</ComponentWrapper>
+      ) : isAuth ? (
+        children
+      ) : (
+        redirectHome()
+      )}
+    </>
+  );
 }
 
 export default RequireAuth;

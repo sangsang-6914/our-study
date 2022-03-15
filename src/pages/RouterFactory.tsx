@@ -1,6 +1,11 @@
 import Header from '@components/header/Header';
 import {Facebook, Google} from '@styles/login.style';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import GitHub from './callback/GitHub';
 import Kakao from './callback/Kakao';
 import DeveloperInfo from './developer/DeveloperInfo';
@@ -32,6 +37,10 @@ function RouterPage() {
                 <Join />
               </RequireNoAuth>
             }
+          />
+          <Route
+            path="/mypage"
+            element={<Navigate to="/mypage/account" replace />}
           />
           <Route
             path="/mypage/*"

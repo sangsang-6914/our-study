@@ -96,5 +96,8 @@
       "title": "Edit member information",
       "button": "Modify"
     }
+  },
+  "alert": {
+    "tokenExpired": "Your login has expired. Please log in again."
   }
 }

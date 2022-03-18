@@ -11,7 +11,8 @@
       "@api/*": ["./api/*"],
       "@assets": ["./assets/*"],
       "@utils/*": ["./utils/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./hooks/*"],
+      "@enums/*": ["./enums/*"]
     }
   }
 }

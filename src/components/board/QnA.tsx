@@ -1,7 +1,11 @@
-function QnA () {
-  return (
-    <div>질문 답변</div>
-  )
+import {StudyType} from '@enums/StudyType';
+
+interface IQnaProps {
+  type: StudyType;
 }
 
-export default QnA
+function QnA({type}: IQnaProps) {
+  return <div>질문 답변</div>;
+}
+
+export default QnA;

@@ -15,6 +15,7 @@ import {Link, Route, Routes} from 'react-router-dom';
 import FreeBoard from '@components/board/FreeBoard';
 import QnA from '@components/board/QnA';
 import Study from '@components/board/Study';
+import {StudyType} from '@enums/StudyType';
 
 function Developer() {
   const selectMenu = useSelector(
@@ -54,9 +55,15 @@ function Developer() {
         </NavContainer>
         <DeveloperComponent>
           <Routes>
-            <Route path="study" element={<Study />} />
-            <Route path="qna" element={<QnA />} />
-            <Route path="free" element={<FreeBoard />} />
+            <Route
+              path="study"
+              element={<Study type={StudyType.DEVELOPER} />}
+            />
+            <Route path="qna" element={<QnA type={StudyType.DEVELOPER} />} />
+            <Route
+              path="free"
+              element={<FreeBoard type={StudyType.DEVELOPER} />}
+            />
           </Routes>
         </DeveloperComponent>
       </NavWrapper>
